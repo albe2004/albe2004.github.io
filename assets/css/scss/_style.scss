@@ -1,0 +1,94 @@
+body {
+    font-family: "Space Grotesk", sans-serif !important;
+    margin: 0;
+    padding: 0;
+    color: white !important;
+    background-image: url('/assets/img/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    line-height: 27px;
+    font-size: 18px;
+  }
+  
+  
+.primary-btn {
+    padding: 12px 24px;
+    background-color: #D20A2E;
+    border-radius: 20px;
+    color: #ffffff;
+    font-family: "Space Grotesk", sans-serif;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.4s;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-top: 20px;
+    text-transform: lowercase;
+    position: relative;
+    z-index: 1;
+    border: 1px solid transparent;
+    align-self: center !important;
+    height: 50px;
+    line-height: 25px !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    word-wrap: break-word;
+  
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transition: 0.4s;
+    border: 1px solid #000000;
+}
+
+&:active {   
+    background-color: #D20A2E;
+    color: #ffffff;
+}
+}
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.animated-highlight {
+  font-size: 84px;
+  line-height: 1.2;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(
+    270deg,
+    $header-bg,
+    $primary-color,
+    $header-bg,
+    $primary-color,
+    $header-bg
+  );
+  background-size: 800% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-scroll 6s linear infinite;
+  margin-top: 260px;
+}
+
+@keyframes rainbow-scroll {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+

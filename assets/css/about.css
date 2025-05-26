@@ -1,0 +1,125 @@
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0 5%;
+    position: relative;
+    align-items: center;
+  }
+
+.animated-highlight {
+    display: inline-block;
+}
+
+.bio-content h1 {
+    font-size: 84px;
+    font-weight: bold ;
+    margin-bottom: 50px;
+    line-height: 77px;
+    font-family: "Space Grotesk", sans-serif;
+    margin-top: 260px;
+}
+
+.bio-content p {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    font-family: "Space Grotesk", sans-serif;
+    line-height: 27px;
+  }
+  
+
+.self-image {
+    flex: 0 0 80%;
+    max-width: 520px;
+}
+
+.self-image {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 460px;
+  }
+
+  .self-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+.bio-section {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-gap: 140px;
+    margin-top: 80px;
+    align-items: start;
+    position: relative;
+  }
+
+  @media (max-width: 1000px) {
+    .bio-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 40px;
+    }
+  
+    .bio-content {
+      order: 1;
+    }
+  
+    .self-image {
+      order: 2;
+      margin: 0 auto;
+      width: 100%;
+      margin:0 auto;
+      max-width: none;
+    }
+  }
+  
+@media (max-width: 768px) {
+    .bio-section {
+        flex-direction: column;
+        display: flex;
+        align-items: flex-start;
+        gap:40px;
+    }
+    
+    .self-image {
+        order: 2;
+        max-width: none;
+        width: 100%;
+        margin: 0 auto;
+      }
+      
+      .bio-text {
+        grid-column: 1;
+      }
+      
+      .bio-content h1 {
+        font-size: 64px;
+        margin-top: 100px;;
+        margin-bottom: 20px;
+      }
+      .bio-content p {
+        font-size: 16px;
+        display: flex;
+      }
+    }
+
+@media (max-width: 576px) {
+    .bio-content br {
+      display: none;
+    }
+}
+
+@media (max-width: 1400px) {
+    br {
+      display: none;
+    }
+  }

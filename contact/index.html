@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/scss/main.css">
+    <link rel="stylesheet" href="/assets/css/contact.css">        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>Andrea-Alberici-Portfolio</title>
+    <meta property="og:description" content="Let’s connect! Contact Andrea Alberici for design collaborations, portfolio feedback, or just to say hello." />
+    <meta property="og:image" content="https://www.tuosito.it/img/anteprima.jpg" />
+    <meta property="og:url" content="https://www.tuosito.com/" />
+    <meta property="og:type" content="Andrea Alberici Contact" />
+    <meta property="og:site_name" content="Andrea Alberici Portfolio" />
+    <meta property="og:locale" content="it_IT" />
+  </head>
+
+  <body>
+    <header>
+        <nav class="nav">
+            <a href="/">HOME</a>
+            <a href="/about/">ABOUT ME</a>
+            <a href="/my-projects/">MY PROJECTS</a>
+            <a href="/cv/">CV</a>
+            <a href="/contact/">CONTACT</a>
+        </nav>
+    </header>
+    <h1 class="animated-highlight">CONTACT ME</h1>
+    <p class="p">Have a project in mind? Let’s connect and bring your vision to life.</p>
+    <div class="contact-form-container">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" placeholder="name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="surname" placeholder="surname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" placeholder="email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" placeholder="write your message" required></textarea>
+                        </div>
+                        <button type="submit" onclick="sendMail()" class="primary-btn">Send message</button>
+                        <span class="form-message">I will get back to you within 48 hours. Thank you for your patience!</span>
+                    </form>
+                </div>
+
+    <footer>
+        <div class="footer-copyright">
+          © 2025 ANDREA ALBERICI | ALL RIGHTS RESERVED.
+        </div>
+        <div class="social-icons">
+          <a href="https://github.com/albe2004"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/andrea-alberici-655005292/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/andre.alberici/"><i class="fab fa-instagram"></i></a>
+        </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+      <script>
+        (function () {
+          emailjs.init({
+            publicKey: "D7bi62LJHl40RijKO",
+          });
+        })();
+      </script>  
+      <script src="/assets/javascript/email.js"></script>
+      <script src="/assets/javascript/header.js"></script>
+  </body>
+</html>

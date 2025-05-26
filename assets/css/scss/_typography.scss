@@ -1,0 +1,61 @@
+
+$font-primary: "Space Grotesk", sans-serif;
+$font-bold: bold;
+$font-medium: 500;
+$font-regular: 400;
+
+
+@mixin heading($size, $weight, $line-height) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  font-family: $font-primary;
+}
+
+
+.h1 {
+  @include heading(84px !important, $font-bold, 101px);
+  text-align: center;
+}
+
+.h2 {
+  @include heading(52px !important, $font-medium, 62px);
+}
+
+.h3 {
+  @include heading(37px !important, $font-medium, 44px);
+}
+
+.h4 {
+  @include heading(24px !important, $font-regular, 29px);
+}
+
+.p {
+  @include heading(18px !important, $font-regular, 24px);
+}
+
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 44px;
+    line-height: 53px;
+  }
+
+  .h2 {
+    font-size: 30px ;
+    line-height: 36px ;
+  }
+
+  .h3 {
+    font-size: 22px ;
+    line-height: 26px ;
+  }
+
+  .h4 {
+    font-size: 18px ;
+    line-height: 22px ;
+  }
+  
+  .p {
+    font-size: 16px ;
+  }
+}

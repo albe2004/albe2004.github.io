@@ -1,0 +1,164 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h1.animated-highlight {
+  margin-top: 260px;
+}
+
+
+.p {
+  margin-bottom: 48px !important;
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.contact-form-container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 60px;
+  margin: 0 auto;
+  max-width: 70%;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  outline: none;
+  transition: border-color 0.3s;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+textarea.form-control {
+  min-height: 450px;
+  border-radius: 20px;
+  resize: vertical;
+}
+
+.form-control:focus {
+  border: 2px solid #D20A2E;
+}
+
+.primary-btn {
+  display: inline-block;
+  width: 170px;
+  height: 50px;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.form-message {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+  position: relative;
+  top: 1px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+}
+@media (max-width: 1200px) {
+  .contact-form-container {
+      max-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .contact-form-container {
+      padding: 16px !important;
+      max-width: 80%!important;
+  }
+  
+  .animated-highlight {
+    font-size: 40px !important;
+    line-height: 48px;
+    margin-top: 140px !important;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+  .p {
+    font-size: 16px !important;
+    margin-bottom: 24px !important;
+}
+
+  .form-row {
+      flex-direction: column;
+      gap: 0;
+  }
+
+  #name.form-control {
+    height: 35px;
+    font-size: 14px;
+}
+
+#surname.form-control {
+    height: 35px;
+    font-size: 14px;
+}
+
+#email.form-control {
+    height: 35px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.primary-btn {
+    margin: 0;
+    margin-bottom: 12px !important;
+}
+textarea#message.form-control {
+    min-height: 150px;
+    font-size: 14px;
+}
+span.form-message {
+    font-size: 12px;
+    margin: 0;
+}
+}
+
+@media (max-width: 576px) {
+ 
+
+  .form-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .primary-btn {
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+  
+  .form-message {
+    margin-top: 5px;
+  }
+  .contact-form-container {
+    padding: 25px;
+    max-width: 50%;
+  }
+}
