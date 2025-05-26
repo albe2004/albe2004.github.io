@@ -18,6 +18,9 @@ main {
   text-transform: lowercase;
 }
 
+body {
+  overflow-x: hidden;
+}
 .carousel-container {
   position: relative;
   max-width: 80% !important;
@@ -56,6 +59,7 @@ main {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 0 20px 20px 0;
 }
 
 .carousel a {
