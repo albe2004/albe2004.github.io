@@ -188,7 +188,7 @@ header.menu-open .hamburger span:nth-child(3) {
     width: 70%;
     padding: 12px 20px;
     height: 45px;
-    font-size: 18px;
+    font-size: 18px !important;
     border-radius: 15px;
     justify-content: center;
     text-align: center;
@@ -336,7 +336,7 @@ body {
   margin: 0;
   padding: 0;
   color: white !important;
-  background-image: url("assets/img/background.png");
+  background-image: url("/assets/img/background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
