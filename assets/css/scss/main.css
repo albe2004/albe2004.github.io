@@ -342,6 +342,7 @@ body {
   background-repeat: no-repeat;
   line-height: 27px;
   font-size: 18px;
+  overflow-x: hidden;
 }
 
 .primary-btn {
