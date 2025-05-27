@@ -19,8 +19,9 @@ main {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
+
 .carousel-container {
   position: relative;
   max-width: 75% !important;
