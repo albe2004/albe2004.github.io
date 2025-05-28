@@ -18,9 +18,7 @@ main {
   text-transform: lowercase;
 }
 
-body {
-  overflow-x: hidden !important;
-}
+
 
 .carousel-container {
   position: relative;
@@ -92,9 +90,9 @@ body {
 
 @media (max-width: 1440px) {
   .carousel-item {
-    min-width: 300px;
-    flex: 0 0 250px;
-    min-height: 250px;
+    min-width: 350px;
+    flex: 0 0 300px;
+    min-height: 300px;
   }
 }
 
@@ -121,9 +119,9 @@ body {
 
 @media (max-width: 480px) {
   .carousel-item {
-    min-width: 200px;
-    flex: 0 0 200px;
-    min-height: 200px;
+    min-width: 300px;
+    flex: 0 0 250px;
+    min-height: 250px;
   }
   .carousel-item .text-container {
     width: 60%;  
