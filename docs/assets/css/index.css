@@ -180,9 +180,9 @@ main {
 
 @media (max-width: 768px) {
   .animated-highlight {
-    font-size: 40px;
+    font-size: 60px;
     margin-bottom: 12px;
-    line-height: 48px;
+    line-height: 69px;
   }
  
   p {

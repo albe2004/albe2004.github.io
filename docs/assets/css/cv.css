@@ -9,8 +9,8 @@
 }
 
 .h3 {
-    color: #000000;
-    margin-bottom: 20px;
+    color: #000000 !important;
+    margin-bottom: 20px !important;
     text-align: center;
 }
 
@@ -195,7 +195,7 @@ p {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .profile-header {
         flex-direction: column-reverse;
         text-align: center;
@@ -207,18 +207,19 @@ p {
         font-size: 44px;
     }
 
-    .h4 {
+    .h3 {
         text-align: center;
         margin-bottom: 12px;
+        font-size: 28px !important;
     }
 
     .h2-title {
-        font-size: 30px;
+        font-size: 34px;
         margin-bottom: 12px;
     }
 
     .h2 {
-        font-size: 30px !important;
+        font-size: 42px !important;
         margin-bottom: 12px;
         text-align: center;
     }
