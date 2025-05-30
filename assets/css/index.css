@@ -154,6 +154,7 @@ main {
     min-width: 240px; /* Ridotto per telefoni molto piccoli */
     flex: 0 0 240px;
     min-height: 220px;
+    flex-shrink: 0;
   }
   
   .primary-btn {
@@ -201,10 +202,6 @@ main {
     font-size: 60px;
     margin-bottom: 12px;
     line-height: 69px;
-  }
-
-  a {
-    font-family: "Space Grotesk", sans-serif !important;
   }
  
   p {
