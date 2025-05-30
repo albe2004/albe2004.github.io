@@ -74,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateCarouselPosition() {
     const translateAmount = position * itemWidth;
     carousel.style.transform = `translateX(-${translateAmount}px)`;
+    
+    // Debug (rimuovi in produzione)
+    console.log(`Position: ${position}, ItemWidth: ${itemWidth}, ItemsPerView: ${itemsPerView}, MaxPosition: ${getMaxPosition()}, TranslateAmount: ${translateAmount}px`);
   }
  
   function updateCarouselVisibility() {
@@ -111,28 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
  
   function getItemWidth() {
-    const screenWidth = window.innerWidth;
+    const item = document.querySelector('.carousel-item');
+    if (!item) return 320; // fallback
+    
+    // Usa la larghezza reale dell'elemento renderizzato
+    const rect = item.getBoundingClientRect();
     const gap = 20; // Gap dal CSS
     
-    // Usa le larghezze REALI dal CSS (min-width, non flex-basis)
-    if (screenWidth <= 480) {
-      // Mobile small: min-width: 300px + gap
-      return 300 + gap;
-    } else if (screenWidth <= 768) {
-      // Mobile: min-width: 300px + gap  
-      return 300 + gap;
-    } else if (screenWidth <= 1440) {
-      // Desktop small: min-width: 350px + gap
-      return 350 + gap;
-    } else {
-      // Desktop large: calcola automaticamente o usa un default
-      const item = document.querySelector('.carousel-item');
-      if (item) {
-        const actualWidth = item.offsetWidth;
-        return actualWidth + gap;
-      }
-      // Fallback per desktop large
-      return 400 + gap;
-    }
+    console.log(`Real item width: ${rect.width}px + gap: ${gap}px = ${rect.width + gap}px`);
+    return rect.width + gap;
   }
 });
