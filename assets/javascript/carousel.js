@@ -1,83 +1,138 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.getElementById('projects-carousel');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    
-    let position = 0;
-    let itemWidth = document.querySelector('.carousel-item').offsetWidth + 20; // larghezza + gap
-    let itemsPerView = getItemsPerView();
-    const totalItems = document.querySelectorAll('.carousel-item').length;
-  
-    // Variabili per il touch swipe
-    let startX = 0;
-    let endX = 0;
-    const swipeThreshold = 50;
-  
-    updateCarouselVisibility();
-  
-    prevBtn.addEventListener('click', () => {
-      if (position > 0) {
-        position--;
-        updateCarouselPosition();
-      }
-      updateCarouselVisibility();
-    });
-  
-    nextBtn.addEventListener('click', () => {
-      if (position < totalItems - itemsPerView) {
-        position++;
-        updateCarouselPosition();
-      }
-      updateCarouselVisibility();
-    });
-  
-    carousel.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-  
-    carousel.addEventListener('touchend', (e) => {
-      endX = e.changedTouches[0].clientX;
-      handleSwipe();
-    });
-  
-    function handleSwipe() {
-      const diff = startX - endX;
-  
-      if (diff > swipeThreshold && position < totalItems - itemsPerView) {
-        position++;
-        updateCarouselPosition();
-      } else if (diff < -swipeThreshold && position > 0) {
-        position--;
-        updateCarouselPosition();
-      }
-      updateCarouselVisibility();
-    }
-  
-    window.addEventListener('resize', () => {
-      itemWidth = document.querySelector('.carousel-item').offsetWidth + 20;
-      itemsPerView = getItemsPerView();
-      position = 0;
+  const carousel = document.getElementById('projects-carousel');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+   
+  let position = 0;
+  let itemWidth = getItemWidth();
+  let itemsPerView = getItemsPerView();
+  const totalItems = document.querySelectorAll('.carousel-item').length;
+ 
+  // Calcolo massimo scrollabile
+  function getMaxPosition() {
+    return Math.max(0, totalItems - itemsPerView);
+  }
+ 
+  // Touch swipe vars
+  let startX = 0;
+  let endX = 0;
+  const swipeThreshold = 50;
+ 
+  updateCarouselVisibility();
+ 
+  prevBtn.addEventListener('click', () => {
+    if (position > 0) {
+      position = position - 1;
       updateCarouselPosition();
       updateCarouselVisibility();
-    });
-  
-    function updateCarouselPosition() {
-      carousel.style.transform = `translateX(-${position * itemWidth}px)`;
-    }
-  
-    function updateCarouselVisibility() {
-      const isMobile = window.innerWidth < 768;
-      prevBtn.style.display = isMobile ? 'none' : 'block';
-      nextBtn.style.display = isMobile ? 'none' : 'block';
-  
-      if (!isMobile) {
-        prevBtn.style.opacity = position === 0 ? '0.5' : '1';
-        nextBtn.style.opacity = position >= totalItems - itemsPerView ? '0.5' : '1';
-      }
-    }
-  
-    function getItemsPerView() {
-      return window.innerWidth > 768 ? 3 : window.innerWidth > 480 ? 2 : 1;
     }
   });
-  
+ 
+  nextBtn.addEventListener('click', () => {
+    if (position < getMaxPosition()) {
+      position = position + 1;
+      updateCarouselPosition();
+      updateCarouselVisibility();
+    }
+  });
+ 
+  carousel.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+ 
+  carousel.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
+ 
+  function handleSwipe() {
+    const diff = startX - endX;
+     
+    if (diff > swipeThreshold && position < getMaxPosition()) {
+      position = position + 1;
+    } else if (diff < -swipeThreshold && position > 0) {
+      position = position - 1;
+    }
+     
+    updateCarouselPosition();
+    updateCarouselVisibility();
+  }
+ 
+  window.addEventListener('resize', () => {
+    itemWidth = getItemWidth();
+    itemsPerView = getItemsPerView();
+    
+    const maxPos = getMaxPosition();
+    if (position > maxPos) {
+      position = Math.max(0, maxPos);
+    }
+    
+    updateCarouselPosition();
+    updateCarouselVisibility();
+  });
+ 
+  function updateCarouselPosition() {
+    const translateAmount = position * itemWidth;
+    carousel.style.transform = `translateX(-${translateAmount}px)`;
+  }
+ 
+  function updateCarouselVisibility() {
+    const isMobile = window.innerWidth < 768;
+    prevBtn.style.display = isMobile ? 'none' : 'block';
+    nextBtn.style.display = isMobile ? 'none' : 'block';
+     
+    if (!isMobile) {
+      prevBtn.style.opacity = position === 0 ? '0.5' : '1';
+      nextBtn.style.opacity = position >= getMaxPosition() ? '0.5' : '1';
+      
+      prevBtn.style.pointerEvents = position === 0 ? 'none' : 'auto';
+      nextBtn.style.pointerEvents = position >= getMaxPosition() ? 'none' : 'auto';
+    }
+  }
+ 
+  function getItemsPerView() {
+    const screenWidth = window.innerWidth;
+    const containerWidth = carousel.parentElement.offsetWidth;
+    const itemWidth = getItemWidth();
+    
+    // Calcola quanti elementi entrano realmente nel container
+    const theoreticalItems = Math.floor(containerWidth / itemWidth);
+    
+    if (screenWidth <= 768) {
+      // Su mobile mostra 1 elemento alla volta
+      return 1;
+    } else if (screenWidth <= 1440) {
+      // Su tablet/desktop piccolo, usa il calcolo teorico ma max 2
+      return Math.min(theoreticalItems, 2);
+    } else {
+      // Su desktop grande, usa il calcolo teorico ma max 3
+      return Math.min(theoreticalItems, 3);
+    }
+  }
+ 
+  function getItemWidth() {
+    const screenWidth = window.innerWidth;
+    const gap = 20; // Gap dal CSS
+    
+    // Usa le larghezze REALI dal CSS (min-width, non flex-basis)
+    if (screenWidth <= 480) {
+      // Mobile small: min-width: 300px + gap
+      return 300 + gap;
+    } else if (screenWidth <= 768) {
+      // Mobile: min-width: 300px + gap  
+      return 300 + gap;
+    } else if (screenWidth <= 1440) {
+      // Desktop small: min-width: 350px + gap
+      return 350 + gap;
+    } else {
+      // Desktop large: calcola automaticamente o usa un default
+      const item = document.querySelector('.carousel-item');
+      if (item) {
+        const actualWidth = item.offsetWidth;
+        return actualWidth + gap;
+      }
+      // Fallback per desktop large
+      return 400 + gap;
+    }
+  }
+});
