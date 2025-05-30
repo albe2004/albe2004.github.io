@@ -25,6 +25,7 @@ main {
   max-width: 75% !important;
   margin: 0 auto;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .carousel {
