@@ -153,6 +153,9 @@
         margin-top: 160px !important;
         font-size: 44px !important;
     }
+    a {
+        font-family: "Space Grotesk", sans-serif !important;
+      }
     
     .col-md-6 {
         margin-bottom: 20px;

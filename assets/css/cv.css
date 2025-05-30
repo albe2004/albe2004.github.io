@@ -271,6 +271,9 @@ p {
     .interests-grid {
         grid-template-columns: 1fr;
     }
+    a {
+        font-family: "Space Grotesk", sans-serif !important;
+      }
 
     .h1 {
         font-size: 36px;
