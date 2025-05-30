@@ -10,7 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
  
   // Calcolo massimo scrollabile
   function getMaxPosition() {
-    return Math.max(0, totalItems - itemsPerView);
+    const screenWidth = window.innerWidth;
+    
+    if (screenWidth <= 768) {
+      // Su mobile, puoi scorrere fino all'ultimo elemento (totalItems - 1)
+      return Math.max(0, totalItems - 1);
+    } else {
+      // Su desktop, calcolo normale
+      return Math.max(0, totalItems - itemsPerView);
+    }
   }
  
   // Touch swipe vars
@@ -76,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     carousel.style.transform = `translateX(-${translateAmount}px)`;
     
     // Debug (rimuovi in produzione)
-    console.log(`Position: ${position}, ItemWidth: ${itemWidth}, ItemsPerView: ${itemsPerView}, MaxPosition: ${getMaxPosition()}, TranslateAmount: ${translateAmount}px`);
+    console.log(`Position: ${position}/${getMaxPosition()}, ItemWidth: ${itemWidth}px, TotalItems: ${totalItems}, ItemsPerView: ${itemsPerView}, Mobile: ${window.innerWidth <= 768}`);
   }
  
   function updateCarouselVisibility() {
@@ -95,33 +103,40 @@ document.addEventListener('DOMContentLoaded', () => {
  
   function getItemsPerView() {
     const screenWidth = window.innerWidth;
-    const containerWidth = carousel.parentElement.offsetWidth;
-    const itemWidth = getItemWidth();
-    
-    // Calcola quanti elementi entrano realmente nel container
-    const theoreticalItems = Math.floor(containerWidth / itemWidth);
     
     if (screenWidth <= 768) {
-      // Su mobile mostra 1 elemento alla volta
+      // Su mobile, mostra 1 elemento ma questo è solo per il calcolo desktop
+      // Il vero controllo è in getMaxPosition()
       return 1;
     } else if (screenWidth <= 1440) {
-      // Su tablet/desktop piccolo, usa il calcolo teorico ma max 2
-      return Math.min(theoreticalItems, 2);
+      // Su desktop piccolo
+      const containerWidth = carousel.parentElement.offsetWidth;
+      const itemWidth = getItemWidth();
+      return Math.min(Math.floor(containerWidth / itemWidth), 2);
     } else {
-      // Su desktop grande, usa il calcolo teorico ma max 3
-      return Math.min(theoreticalItems, 3);
+      // Su desktop grande
+      const containerWidth = carousel.parentElement.offsetWidth;
+      const itemWidth = getItemWidth();
+      return Math.min(Math.floor(containerWidth / itemWidth), 3);
     }
   }
  
   function getItemWidth() {
     const item = document.querySelector('.carousel-item');
-    if (!item) return 320; // fallback
+    if (!item) return 280; // fallback
     
     // Usa la larghezza reale dell'elemento renderizzato
     const rect = item.getBoundingClientRect();
     const gap = 20; // Gap dal CSS
     
-    console.log(`Real item width: ${rect.width}px + gap: ${gap}px = ${rect.width + gap}px`);
-    return rect.width + gap;
+    // Su mobile molto piccolo, assicurati che non superi la larghezza dello schermo
+    const screenWidth = window.innerWidth;
+    const maxWidth = screenWidth * 0.95; // 95% della larghezza schermo
+    
+    const calculatedWidth = rect.width + gap;
+    const finalWidth = screenWidth <= 480 ? Math.min(calculatedWidth, maxWidth) : calculatedWidth;
+    
+    console.log(`Screen: ${screenWidth}px, Item: ${rect.width}px, Final: ${finalWidth}px`);
+    return finalWidth;
   }
 });
