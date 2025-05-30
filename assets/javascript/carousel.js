@@ -8,12 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let itemsPerView = getItemsPerView();
   const totalItems = document.querySelectorAll('.carousel-item').length;
  
-  // Calcolo massimo scrollabile
+  // Calcolo massimo scrollabile - CORRETTO
   function getMaxPosition() {
     const screenWidth = window.innerWidth;
     
     if (screenWidth <= 768) {
-      // Su mobile, puoi scorrere fino all'ultimo elemento (totalItems - 1)
+      // Su mobile, l'ultimo elemento visualizzabile è totalItems - 1
+      // Ma dobbiamo considerare che partiamo da position 0
       return Math.max(0, totalItems - 1);
     } else {
       // Su desktop, calcolo normale
@@ -55,8 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
  
   function handleSwipe() {
     const diff = startX - endX;
+    const maxPos = getMaxPosition();
      
-    if (diff > swipeThreshold && position < getMaxPosition()) {
+    if (diff > swipeThreshold && position < maxPos) {
       position = position + 1;
     } else if (diff < -swipeThreshold && position > 0) {
       position = position - 1;
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
  
   window.addEventListener('resize', () => {
+    // Ricalcola tutto al resize
     itemWidth = getItemWidth();
     itemsPerView = getItemsPerView();
     
@@ -80,15 +83,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
  
   function updateCarouselPosition() {
-    const translateAmount = position * itemWidth;
+    const isMobile = window.innerWidth <= 768;
+    let translateAmount;
+    
+    if (isMobile) {
+      // Su mobile, usa una logica di scorrimento più semplice
+      // Calcola la larghezza effettiva dell'elemento + gap
+      const item = document.querySelector('.carousel-item');
+      const itemRect = item.getBoundingClientRect();
+      const gap = 20; // Gap dal CSS
+      translateAmount = position * (itemRect.width + gap);
+    } else {
+      // Su desktop, usa il calcolo originale
+      translateAmount = position * itemWidth;
+    }
+    
     carousel.style.transform = `translateX(-${translateAmount}px)`;
     
     // Debug (rimuovi in produzione)
-    console.log(`Position: ${position}/${getMaxPosition()}, ItemWidth: ${itemWidth}px, TotalItems: ${totalItems}, ItemsPerView: ${itemsPerView}, Mobile: ${window.innerWidth <= 768}`);
+    console.log(`Position: ${position}/${getMaxPosition()}, ItemWidth: ${itemWidth}px, TotalItems: ${totalItems}, ItemsPerView: ${itemsPerView}, Mobile: ${window.innerWidth <= 768}, TranslateAmount: ${translateAmount}px`);
   }
  
   function updateCarouselVisibility() {
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.innerWidth <= 768;
+    
+    // Su mobile nascondi i bottoni ma mantieni la funzionalità swipe
     prevBtn.style.display = isMobile ? 'none' : 'block';
     nextBtn.style.display = isMobile ? 'none' : 'block';
      
@@ -105,8 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenWidth = window.innerWidth;
     
     if (screenWidth <= 768) {
-      // Su mobile, mostra 1 elemento ma questo è solo per il calcolo desktop
-      // Il vero controllo è in getMaxPosition()
+      // Su mobile, mostra 1 elemento alla volta
       return 1;
     } else if (screenWidth <= 1440) {
       // Su desktop piccolo
@@ -125,18 +143,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const item = document.querySelector('.carousel-item');
     if (!item) return 280; // fallback
     
-    // Usa la larghezza reale dell'elemento renderizzato
     const rect = item.getBoundingClientRect();
     const gap = 20; // Gap dal CSS
-    
-    // Su mobile molto piccolo, assicurati che non superi la larghezza dello schermo
     const screenWidth = window.innerWidth;
-    const maxWidth = screenWidth * 0.95; // 95% della larghezza schermo
     
-    const calculatedWidth = rect.width + gap;
-    const finalWidth = screenWidth <= 480 ? Math.min(calculatedWidth, maxWidth) : calculatedWidth;
-    
-    console.log(`Screen: ${screenWidth}px, Item: ${rect.width}px, Final: ${finalWidth}px`);
-    return finalWidth;
+    if (screenWidth <= 768) {
+      // Su mobile, usa la larghezza reale dell'elemento
+      // Non limitare artificialmente la larghezza
+      return rect.width + gap;
+    } else {
+      // Su desktop, usa il calcolo originale
+      return rect.width + gap;
+    }
   }
+  
+  // Aggiungi una funzione di debug per controllare i valori
+  function debugCarousel() {
+    console.log('=== CAROUSEL DEBUG ===');
+    console.log('Total Items:', totalItems);
+    console.log('Current Position:', position);
+    console.log('Max Position:', getMaxPosition());
+    console.log('Item Width:', itemWidth);
+    console.log('Items Per View:', itemsPerView);
+    console.log('Screen Width:', window.innerWidth);
+    console.log('Is Mobile:', window.innerWidth <= 768);
+    console.log('===================');
+  }
+  
+  // Rimuovi questo in produzione - serve solo per debug
+  window.debugCarousel = debugCarousel;
 });
