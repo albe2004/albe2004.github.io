@@ -9,7 +9,6 @@ main {
 .projects-section {
   padding: 60px 0;
   text-align: center;
-
 }
 
 .h2 {
@@ -18,13 +17,12 @@ main {
   text-transform: lowercase;
 }
 
-
-
 .carousel-container {
   position: relative;
-  max-width: 75%  ;
+  max-width: 75%;
   margin: 0 auto;
   margin-bottom: 20px;
+  overflow-x: hidden; 
 }
 
 .carousel {
@@ -42,7 +40,6 @@ main {
   cursor: pointer;
   display: flex;
 }
-
 
 .carousel-item .image-container {
   width: 100%;
@@ -96,15 +93,16 @@ main {
   }
 }
 
-
 @media (max-width: 768px) {
-  .carousel-item {
-    min-width: 300px;
-    flex: 0 0 200px;
-    min-height: 250px;
+  .carousel-container {
+    max-width: 90%; /* Più largo su mobile */
+    margin: 0 auto;
   }
-
+  
   .carousel-item {
+    min-width: 280px; /* Riduci leggermente la larghezza minima */
+    flex: 0 0 280px;
+    min-height: 250px;
     padding: 0 !important;
   }
 
@@ -112,42 +110,62 @@ main {
     font-size: 14px !important;
     line-height: 20px !important;
   }
+  
   #prev, #next {
     display: none !important;
   }
 }
 
 @media (max-width: 480px) {
+  .carousel-container {
+    max-width: 95%; /* Ancora più largo su schermi molto piccoli */
+  }
+  
   .carousel-item {
-    min-width: 300px;
-    flex: 0 0 250px;
+    min-width: 260px; /* Ancora più piccolo per telefoni */
+    flex: 0 0 260px;
     min-height: 250px;
   }
+  
   .carousel-item .text-container {
     width: 60%;  
   }
+  
   .primary-btn {
     font-size: 14px !important;
     line-height: 20px !important;
   }
+  
   .animated-highlight {
    margin-top: 120px;
   }
+  
   footer {
     margin-top: 20px !important;
   }
 }
-@media (max-width: 363px) {
+
+@media (max-width: 360px) {
+  .carousel-container {
+    max-width: 98%; /* Quasi tutta la larghezza su schermi molto piccoli */
+  }
+  
+  .carousel-item {
+    min-width: 240px; /* Ridotto per telefoni molto piccoli */
+    flex: 0 0 240px;
+    min-height: 220px;
+  }
+  
   .primary-btn {
     height: 70px;
     white-space: normal;
   }
 }
+
 .carousel-item:hover {
   transition: background-color 0.5s ease;
   translate: 0 -10px;
 }
-
 
 .carousel-controls {
   display: flex;
@@ -191,17 +209,17 @@ main {
     width: 80%;
     margin: 0 auto;
   }
+  
   main {
     margin-top: 160px;
     margin-bottom: 24px;
   }
-}
-
-@media (max-width: 768px) {
+  
   .projects-section .h2 {
     font-size: 30px !important;
     margin-bottom: 20px !important;
   }
+  
   .projects-section {
     padding: 40px 0;
   }
