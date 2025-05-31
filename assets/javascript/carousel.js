@@ -5,210 +5,162 @@ document.addEventListener('DOMContentLoaded', () => {
    
   let position = 0;
   const totalItems = document.querySelectorAll('.carousel-item').length;
- 
-  // Funzione per ottenere la larghezza effettiva di scorrimento
-  function getScrollWidth() {
-    const screenWidth = window.innerWidth;
+  const isMobile = () => window.innerWidth <= 768;
+
+  // SCORRIMENTO COERENTE: Calcola quanti pixel scorrere basandosi sulla larghezza del container
+  function getScrollAmount() {
+    const container = carousel.parentElement;
+    const containerWidth = container.offsetWidth;
     
-    if (screenWidth <= 360) {
-      return 240 + 20; // 240px (flex-basis) + 20px (gap)
-    } else if (screenWidth <= 480) {
-      return 260 + 20; // 260px + gap
-    } else if (screenWidth <= 768) {
-      return 280 + 20; // 280px + gap
-    } else if (screenWidth <= 1440) {
-      return 300 + 20; // 300px + gap
-    } else {
-      // Desktop: calcola dinamicamente
-      const item = document.querySelector('.carousel-item');
-      if (item) {
-        const rect = item.getBoundingClientRect();
-        return rect.width + 20;
-      }
-      return 320; // fallback
-    }
+    // Scorre sempre del 70% della larghezza del container visibile
+    // Questo garantisce movimento significativo ma mantiene continuità visiva
+    return Math.floor(containerWidth * 0.7);
   }
- 
-  // Calcolo massimo scrollabile - CORRETTO
-  function getMaxPosition() {
-    const screenWidth = window.innerWidth;
+
+  // POSIZIONI MASSIME: Calcola fino a dove può scorrere
+  function getMaxScrollPosition() {
+    if (isMobile()) return 0;
     
-    if (screenWidth <= 768) {
-      // Su mobile, può scorrere fino all'ultima carta
-      // Ma dobbiamo considerare quante carte sono visibili
-      const containerWidth = carousel.parentElement.offsetWidth;
-      const scrollWidth = getScrollWidth();
-      const itemsVisible = Math.floor(containerWidth / scrollWidth);
-      return Math.max(0, totalItems - itemsVisible);
-    } else {
-      // Su desktop, calcola quante carte sono visibili
-      const containerWidth = carousel.parentElement.offsetWidth;
-      const scrollWidth = getScrollWidth();
-      const itemsPerView = Math.floor(containerWidth / scrollWidth);
-      return Math.max(0, totalItems - itemsPerView);
-    }
+    const container = carousel.parentElement;
+    const containerWidth = container.offsetWidth;
+    
+    // Calcola la larghezza totale del contenuto
+    let totalContentWidth = 0;
+    const items = document.querySelectorAll('.carousel-item');
+    
+    items.forEach(item => {
+      totalContentWidth += item.offsetWidth + 20; // larghezza item + gap
+    });
+    
+    // Massimo scroll = contenuto totale - container visibile
+    const maxScroll = Math.max(0, totalContentWidth - containerWidth);
+    
+    // Converti in numero di "posizioni" basate su quanto scorre per click
+    const scrollAmount = getScrollAmount();
+    return Math.ceil(maxScroll / scrollAmount);
   }
- 
-  // Touch swipe vars
-  let startX = 0;
-  let endX = 0;
-  let startY = 0;
-  let endY = 0;
-  const swipeThreshold = 50;
-  let isSwiping = false;
-  let isHorizontalSwipe = false;
- 
-  updateCarouselVisibility();
- 
-  prevBtn.addEventListener('click', () => {
+
+  function initCarousel() {
+    position = 0; // Reset posizione
+    
+    if (isMobile()) {
+      setupMobileScroll();
+    } else {
+      setupDesktopControls();
+    }
+    updateControls();
+  }
+  
+  function setupMobileScroll() {
+    // Reset transform
+    carousel.style.transform = 'translateX(0px)';
+    
+    // Abilita scroll nativo
+    const container = carousel.parentElement;
+    container.style.overflowX = 'auto';
+    container.style.overflowY = 'hidden';
+    container.style.scrollBehavior = 'smooth';
+    
+    // Nascondi scrollbar
+    container.style.scrollbarWidth = 'none';
+    container.style.msOverflowStyle = 'none';
+    
+    // Assicura che il carousel sia largo abbastanza
+    let totalWidth = 0;
+    const items = document.querySelectorAll('.carousel-item');
+    items.forEach(item => {
+      totalWidth += item.offsetWidth + 20;
+    });
+    carousel.style.width = `${totalWidth}px`;
+  }
+  
+  function setupDesktopControls() {
+    // Reset scroll nativo
+    const container = carousel.parentElement;
+    container.style.overflowX = 'hidden';
+    container.scrollLeft = 0;
+    carousel.style.width = 'auto';
+    
+    // Aggiungi event listeners
+    prevBtn.removeEventListener('click', handlePrevClick);
+    nextBtn.removeEventListener('click', handleNextClick);
+    prevBtn.addEventListener('click', handlePrevClick);
+    nextBtn.addEventListener('click', handleNextClick);
+  }
+  
+  function handlePrevClick() {
     if (position > 0) {
-      position = position - 1;
+      position--;
       updateCarouselPosition();
-      updateCarouselVisibility();
+      updateControls();
     }
-  });
- 
-  nextBtn.addEventListener('click', () => {
-    const maxPos = getMaxPosition();
+  }
+  
+  function handleNextClick() {
+    const maxPos = getMaxScrollPosition();
     if (position < maxPos) {
-      position = position + 1;
+      position++;
       updateCarouselPosition();
-      updateCarouselVisibility();
-    }
-  });
- 
-  // TOUCH EVENTS MIGLIORATI
-  carousel.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    isSwiping = true;
-    isHorizontalSwipe = false;
-  }, { passive: true });
- 
-  carousel.addEventListener('touchmove', (e) => {
-    if (isSwiping) {
-      const currentX = e.touches[0].clientX;
-      const currentY = e.touches[0].clientY;
-      const diffX = Math.abs(currentX - startX);
-      const diffY = Math.abs(currentY - startY);
-      
-      // Determina se è uno swipe orizzontale
-      if (diffX > diffY && diffX > 10) {
-        isHorizontalSwipe = true;
-        e.preventDefault(); // Previeni lo scroll solo se è swipe orizzontale
-      }
-    }
-  }, { passive: false });
- 
-  carousel.addEventListener('touchend', (e) => {
-    if (isSwiping && isHorizontalSwipe) {
-      endX = e.changedTouches[0].clientX;
-      endY = e.changedTouches[0].clientY;
-      handleSwipe();
-    }
-    isSwiping = false;
-    isHorizontalSwipe = false;
-  }, { passive: true });
- 
-  function handleSwipe() {
-    const diffX = startX - endX;
-    const diffY = Math.abs(startY - endY);
-    const maxPos = getMaxPosition();
-    
-    // Assicurati che sia uno swipe orizzontale
-    if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > diffY) {
-      if (diffX > 0 && position < maxPos) {
-        // Swipe verso sinistra (prossima carta)
-        position = position + 1;
-        console.log(`Swiped left, new position: ${position}/${maxPos}`);
-      } else if (diffX < 0 && position > 0) {
-        // Swipe verso destra (carta precedente)
-        position = position - 1;
-        console.log(`Swiped right, new position: ${position}/${maxPos}`);
-      }
-      
-      updateCarouselPosition();
-      updateCarouselVisibility();
+      updateControls();
     }
   }
- 
-  window.addEventListener('resize', () => {
-    // Ricalcola la posizione massima dopo il resize
-    const maxPos = getMaxPosition();
-    if (position > maxPos) {
-      position = Math.max(0, maxPos);
-    }
-    
-    updateCarouselPosition();
-    updateCarouselVisibility();
-  });
- 
+
   function updateCarouselPosition() {
-    const scrollWidth = getScrollWidth();
-    const translateAmount = position * scrollWidth;
+    if (isMobile()) return;
     
-    carousel.style.transform = `translateX(-${translateAmount}px)`;
+    const scrollAmount = getScrollAmount();
+    const translateX = position * scrollAmount;
     
-    // Debug dettagliato
-    console.log(`=== POSITION UPDATE ===`);
-    console.log(`Screen: ${window.innerWidth}px`);
-    console.log(`Position: ${position}/${getMaxPosition()}`);
-    console.log(`Scroll Width: ${scrollWidth}px`);
-    console.log(`Translate: -${translateAmount}px`);
-    console.log(`Total Items: ${totalItems}`);
-    console.log(`========================`);
+    carousel.style.transform = `translateX(-${translateX}px)`;
+    
+    console.log(`Scroll - Position: ${position}, Translate: -${translateX}px, Max: ${getMaxScrollPosition()}`);
   }
- 
-  function updateCarouselVisibility() {
-    const isMobile = window.innerWidth <= 768;
-    const maxPos = getMaxPosition();
+
+  function updateControls() {
+    const mobile = isMobile();
     
-    // Su mobile nascondi i bottoni
-    prevBtn.style.display = isMobile ? 'none' : 'block';
-    nextBtn.style.display = isMobile ? 'none' : 'block';
-     
-    if (!isMobile) {
+    // Mostra/nascondi controlli
+    prevBtn.style.display = mobile ? 'none' : 'block';
+    nextBtn.style.display = mobile ? 'none' : 'block';
+    
+    if (!mobile) {
+      const maxPos = getMaxScrollPosition();
+      
+      // Disabilita/abilita controlli
       prevBtn.style.opacity = position === 0 ? '0.5' : '1';
       nextBtn.style.opacity = position >= maxPos ? '0.5' : '1';
-      
       prevBtn.style.pointerEvents = position === 0 ? 'none' : 'auto';
       nextBtn.style.pointerEvents = position >= maxPos ? 'none' : 'auto';
     }
   }
-  
-  // Funzione di debug globale
-  function debugCarousel() {
-    const scrollWidth = getScrollWidth();
-    const maxPos = getMaxPosition();
-    const containerWidth = carousel.parentElement.offsetWidth;
-    const itemsVisible = Math.floor(containerWidth / scrollWidth);
-    
+
+  // Gestione resize con debounce
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      initCarousel();
+    }, 100);
+  });
+
+  // Debug function
+  window.debugCarousel = () => {
     console.log('=== CAROUSEL DEBUG ===');
-    console.log('Screen Width:', window.innerWidth);
-    console.log('Container Width:', containerWidth);
-    console.log('Total Items:', totalItems);
-    console.log('Items Visible:', itemsVisible);
-    console.log('Current Position:', position);
-    console.log('Max Position:', maxPos);
-    console.log('Scroll Width:', scrollWidth);
+    console.log('Screen:', window.innerWidth + 'px');
+    console.log('Mobile:', isMobile());
+    console.log('Items:', totalItems);
+    console.log('Position:', position);
+    console.log('Max Position:', getMaxScrollPosition());
+    console.log('Scroll Amount:', getScrollAmount() + 'px');
     console.log('Current Transform:', carousel.style.transform);
-    console.log('Is Mobile:', window.innerWidth <= 768);
-    
-    // Test calcolo larghezza effettiva
-    const item = document.querySelector('.carousel-item');
-    if (item) {
-      const rect = item.getBoundingClientRect();
-      console.log('Item Actual Width:', rect.width);
-      console.log('Item Computed Style:', window.getComputedStyle(item).width);
-    }
-    console.log('===================');
-  }
+    console.log('=====================');
+  };
+
+  // Inizializza
+  initCarousel();
   
-  // Rimuovi in produzione
-  window.debugCarousel = debugCarousel;
-  
-  // Auto debug al caricamento
+  // Debug dopo 500ms
   setTimeout(() => {
-    debugCarousel();
-  }, 1000);
+    console.log('Carousel inizializzato - usa debugCarousel() per info');
+  }, 500);
 });

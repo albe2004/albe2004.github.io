@@ -39,6 +39,7 @@ main {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.493);
   cursor: pointer;
   display: flex;
+  padding-top: 20px;
 }
 
 .carousel-item .image-container {
@@ -77,6 +78,35 @@ main {
   display: flex;
 }
 
+/* Indicatori di scroll per mobile */
+.scroll-indicator-left,
+.scroll-indicator-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  width: 40px;
+  height: 60px;
+  display: none; /* Nascosti di default */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.scroll-indicator-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+}
+
+.scroll-indicator-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+}
+
 @media (max-width: 1440px) {
   .h4 {
     font-size: 16px !important;
@@ -95,15 +125,30 @@ main {
 
 @media (max-width: 768px) {
   .carousel-container {
-    max-width: 90%; /* Più largo su mobile */
+    max-width: 95%;
     margin: 0 auto;
+    overflow-x: auto; 
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+  
+  .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .carousel {
+    transition: none; 
+    padding: 0 10px; 
   }
   
   .carousel-item {
-    min-width: 280px; /* Riduci leggermente la larghezza minima */
+    min-width: 280px;
     flex: 0 0 280px;
     min-height: 250px;
     padding: 0 !important;
+    scroll-snap-align: start; 
   }
 
   .h4 {
@@ -111,18 +156,27 @@ main {
     line-height: 20px !important;
   }
   
+  /* Nascondi controlli frecce su mobile */
   #prev, #next {
     display: none !important;
+  }
+  .primary-btn {
+    position: sticky;
+    left: 60%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 14px !important;
+    line-height: 20px !important;
   }
 }
 
 @media (max-width: 480px) {
   .carousel-container {
-    max-width: 95%; /* Ancora più largo su schermi molto piccoli */
+    max-width: 98%;
   }
   
   .carousel-item {
-    min-width: 260px; /* Ancora più piccolo per telefoni */
+    min-width: 260px;
     flex: 0 0 260px;
     min-height: 250px;
   }
@@ -147,19 +201,26 @@ main {
 
 @media (max-width: 360px) {
   .carousel-container {
-    max-width: 98%; /* Quasi tutta la larghezza su schermi molto piccoli */
+    max-width: 100%;
   }
   
   .carousel-item {
-    min-width: 240px; /* Ridotto per telefoni molto piccoli */
+    min-width: 240px;
     flex: 0 0 240px;
     min-height: 220px;
     flex-shrink: 0;
   }
   
   .primary-btn {
-    height: 70px;
     white-space: normal;
+  }
+}
+
+
+@media (min-width: 769px) {
+  .scroll-indicator-left,
+  .scroll-indicator-right {
+    display: none !important;
   }
 }
 
