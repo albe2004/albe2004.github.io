@@ -55,6 +55,25 @@
     font-size: 16px;
   }
 }
+body header,
+html body header,
+.container header,
+.container-fluid header {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+body header *, body header *::before, body header *::after,
+html body header *,
+html body header *::before,
+html body header *::after,
+.container header *,
+.container header *::before,
+.container header *::after,
+.container-fluid header *,
+.container-fluid header *::before,
+.container-fluid header *::after {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
 header {
   position: fixed;
   display: flex;
@@ -73,7 +92,8 @@ header {
   overflow: visible;
   font-family: "Space Grotesk", sans-serif !important;
 }
-header * {
+header *, header *::before, header *::after,
+header a, header span, header div, header button, header nav {
   font-family: "Space Grotesk", sans-serif !important;
 }
 header.menu-open .nav {
@@ -84,7 +104,8 @@ header.menu-open .nav {
   z-index: 1010;
   font-family: "Space Grotesk", sans-serif !important;
 }
-header.menu-open .nav a {
+header.menu-open .nav *, header.menu-open .nav *::before, header.menu-open .nav *::after,
+header.menu-open .nav a, header.menu-open .nav span, header.menu-open .nav div, header.menu-open .nav button {
   font-family: "Space Grotesk", sans-serif !important;
 }
 header.menu-open .hamburger span:nth-child(1) {
@@ -136,7 +157,7 @@ header.menu-open .hamburger span:nth-child(3) {
   font-family: "Space Grotesk", sans-serif !important;
   text-align: center;
 }
-.nav a {
+.nav a, .nav a:link, .nav a:visited, .nav a:hover, .nav a:active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -150,31 +171,34 @@ header.menu-open .hamburger span:nth-child(3) {
   transition: 0.4s;
   font-family: "Space Grotesk", sans-serif !important;
 }
-.nav a:hover {
+.nav a:hover, .nav a:link:hover, .nav a:visited:hover, .nav a:hover:hover, .nav a:active:hover {
   background-color: #fff;
   border-radius: 20px;
   color: #D20A2E;
   transition: 0.4s;
+  font-family: "Space Grotesk", sans-serif !important;
 }
 .nav .social-icons {
   display: flex;
   gap: 24px;
 }
-.nav .social-icons a {
+.nav .social-icons a, .nav .social-icons a:link, .nav .social-icons a:visited, .nav .social-icons a:hover, .nav .social-icons a:active {
   font-size: 28px;
   color: #fff;
   font-family: "Space Grotesk", sans-serif !important;
 }
 @media (max-width: 1006px) {
-  .nav a {
+  .nav a, .nav a:link, .nav a:visited, .nav a:hover, .nav a:active {
     font-size: 18px;
     padding: 0 8px;
+    font-family: "Space Grotesk", sans-serif !important;
   }
   .nav .social-icons {
     gap: 20px;
   }
-  .nav .social-icons a {
+  .nav .social-icons a, .nav .social-icons a:link, .nav .social-icons a:visited, .nav .social-icons a:hover, .nav .social-icons a:active {
     font-size: 35px;
+    font-family: "Space Grotesk", sans-serif !important;
   }
 }
 @media (max-width: 768px) {
@@ -195,7 +219,12 @@ header.menu-open .hamburger span:nth-child(3) {
     overflow: hidden;
     font-family: "Space Grotesk", sans-serif !important;
   }
-  .nav a {
+  .nav *, .nav *::before, .nav *::after,
+  .nav a, .nav a:link, .nav a:visited, .nav a:hover, .nav a:active,
+  .nav span, .nav div, .nav button {
+    font-family: "Space Grotesk", sans-serif !important;
+  }
+  .nav a, .nav a:link, .nav a:visited, .nav a:hover, .nav a:active {
     width: 70%;
     padding: 12px 20px;
     height: 45px;
@@ -207,9 +236,9 @@ header.menu-open .hamburger span:nth-child(3) {
   }
 }
 @media (max-width: 480px) {
-  .nav a {
+  .nav a, .nav a:link, .nav a:visited, .nav a:hover, .nav a:active {
     width: 70%;
-    font-size: 16px;
+    font-size: 16px !important;
     font-family: "Space Grotesk", sans-serif !important;
   }
 }
@@ -237,6 +266,7 @@ header.menu-open .hamburger span:nth-child(3) {
     background: #fff;
     border-radius: 20px;
     transition: 0.3s ease;
+    font-family: "Space Grotesk", sans-serif !important;
   }
   .hamburger span:last-child {
     margin-bottom: 0;
@@ -246,6 +276,21 @@ header.menu-open .hamburger span:nth-child(3) {
   .hamburger {
     right: 15px;
   }
+}
+
+.navbar, .navbar-nav, .nav-link, .navbar-brand {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.btn, .btn-primary, .btn-secondary, .btn-outline-primary {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+[class*=nav], [class*=btn], [class*=navbar] {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+[class*=nav] *, [class*=nav] *::before, [class*=nav] *::after, [class*=btn] *, [class*=btn] *::before, [class*=btn] *::after, [class*=navbar] *, [class*=navbar] *::before, [class*=navbar] *::after {
+  font-family: "Space Grotesk", sans-serif !important;
 }
 
 footer {

@@ -1,6 +1,19 @@
+// SOLUZIONE 1: Aumentare drasticamente la specificità
 $header-bg: #D20A2E;
 $primary-color: #fff;
 $font-family: "Space Grotesk", sans-serif;
+
+// REGOLA GLOBALE CON MASSIMA SPECIFICITÀ PER SOVRASCRIVERE BOOTSTRAP
+body header,
+html body header,
+.container header,
+.container-fluid header {
+  font-family: $font-family !important;
+  
+  *, *::before, *::after {
+    font-family: $font-family !important;
+  }
+}
 
 header {
   position: fixed;
@@ -19,11 +32,12 @@ header {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: visible;
   
-  // FORZA IL FONT SU TUTTO L'HEADER
+  // TRIPLICE FORZA DEL FONT
   font-family: $font-family !important;
   
-  // FORZA IL FONT SU TUTTI GLI ELEMENTI FIGLI
-  * {
+  // MASSIMA SPECIFICITÀ SU TUTTI GLI ELEMENTI
+  *, *::before, *::after,
+  a, span, div, button, nav {
     font-family: $font-family !important;
   }
 
@@ -34,11 +48,10 @@ header {
       pointer-events: all;
       padding: 1rem;
       z-index: 1010;
-      // ASSICURA IL FONT QUANDO IL MENU È APERTO
       font-family: $font-family !important;
       
-      // FORZA SU TUTTI I LINK QUANDO APERTO
-      a {
+      *, *::before, *::after,
+      a, span, div, button {
         font-family: $font-family !important;
       }
     }
@@ -91,10 +104,11 @@ header {
   box-shadow: none;
   opacity: 1;
   pointer-events: all;
-  font-family: $font-family !important; // IMPORTANTE: Aggiunto !important
+  font-family: $font-family !important;
   text-align: center;
 
-  a {
+  // SPECIFICITÀ MASSIMA PER I LINK
+  a, a:link, a:visited, a:hover, a:active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -106,13 +120,14 @@ header {
     font-weight: 500;
     white-space: nowrap;
     transition: 0.4s;
-    font-family: $font-family !important; // FORZA IL FONT
+    font-family: $font-family !important;
 
     &:hover {
       background-color: $primary-color;
       border-radius: 20px;
       color: $header-bg;
       transition: 0.4s;
+      font-family: $font-family !important;
     }
   }
 
@@ -120,24 +135,26 @@ header {
     display: flex;
     gap: 24px;
 
-    a {
+    a, a:link, a:visited, a:hover, a:active {
       font-size: 28px;
       color: $primary-color;
-      font-family: $font-family !important; // ANCHE SUI SOCIAL
+      font-family: $font-family !important;
     }
   }
 
   @media (max-width: 1006px) {
-    a {
+    a, a:link, a:visited, a:hover, a:active {
       font-size: 18px;
       padding: 0 8px;
+      font-family: $font-family !important;
     }
 
     .social-icons {
       gap: 20px;
 
-      a {
+      a, a:link, a:visited, a:hover, a:active {
         font-size: 35px;
+        font-family: $font-family !important;
       }
     }
   }
@@ -157,11 +174,16 @@ header {
     transition: height 0.5s ease, opacity 0.5s ease;
     padding: 0;
     overflow: hidden;
-    
-    // CRITICO: FORZA IL FONT QUANDO DIVENTA ABSOLUTE
     font-family: $font-family !important;
 
-    a {
+    // SPECIFICITÀ ESTREMA PER MOBILE
+    *, *::before, *::after,
+    a, a:link, a:visited, a:hover, a:active,
+    span, div, button {
+      font-family: $font-family !important;
+    }
+
+    a, a:link, a:visited, a:hover, a:active {
       width: 70%;
       padding: 12px 20px;
       height: 45px;
@@ -169,16 +191,15 @@ header {
       border-radius: 15px;
       justify-content: center;
       text-align: center;
-      // SUPER IMPORTANTE: FORZA IL FONT SUI LINK MOBILE
       font-family: $font-family !important;
     }
   }
 
   @media (max-width: 480px) {
-    a {
+    a, a:link, a:visited, a:hover, a:active {
       width: 70%;
-      font-size: 16px;
-      font-family: $font-family !important; // ANCHE QUI
+      font-size: 16px !important;
+      font-family: $font-family !important;
     }
   }
 }
@@ -205,6 +226,7 @@ header {
       background: $primary-color;
       border-radius: 20px;
       transition: 0.3s ease;
+      font-family: $font-family !important;
 
       &:last-child {
         margin-bottom: 0;
@@ -214,5 +236,24 @@ header {
 
   @media (max-width: 480px) {
     right: 15px;
+  }
+}
+
+// SOLUZIONE AGGIUNTIVA: Regole specifiche per contrastare Bootstrap
+.navbar, .navbar-nav, .nav-link, .navbar-brand {
+  font-family: $font-family !important;
+}
+
+// FORZA IL FONT SU ELEMENTI BOOTSTRAP COMUNI
+.btn, .btn-primary, .btn-secondary, .btn-outline-primary {
+  font-family: $font-family !important;
+}
+
+// REGOLA DI SICUREZZA FINALE
+[class*="nav"], [class*="btn"], [class*="navbar"] {
+  font-family: $font-family !important;
+  
+  *, *::before, *::after {
+    font-family: $font-family !important;
   }
 }

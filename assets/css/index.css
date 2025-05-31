@@ -160,10 +160,11 @@ main {
   #prev, #next {
     display: none !important;
   }
+
   .primary-btn {
     position: sticky;
-    left: 60%;
-    transform: translateX(-50%);
+    left: 40%;
+    transform: translateX(-20%);
     z-index: 10;
     font-size: 14px !important;
     line-height: 20px !important;
