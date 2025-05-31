@@ -29,13 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
  
-  // Calcolo massimo scrollabile
+  // Calcolo massimo scrollabile - CORRETTO
   function getMaxPosition() {
     const screenWidth = window.innerWidth;
     
     if (screenWidth <= 768) {
-      // Su mobile, scorre carta per carta
-      return Math.max(0, totalItems - 1);
+      // Su mobile, può scorrere fino all'ultima carta
+      // Ma dobbiamo considerare quante carte sono visibili
+      const containerWidth = carousel.parentElement.offsetWidth;
+      const scrollWidth = getScrollWidth();
+      const itemsVisible = Math.floor(containerWidth / scrollWidth);
+      return Math.max(0, totalItems - itemsVisible);
     } else {
       // Su desktop, calcola quante carte sono visibili
       const containerWidth = carousel.parentElement.offsetWidth;
@@ -48,8 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Touch swipe vars
   let startX = 0;
   let endX = 0;
+  let startY = 0;
+  let endY = 0;
   const swipeThreshold = 50;
   let isSwiping = false;
+  let isHorizontalSwipe = false;
  
   updateCarouselVisibility();
  
@@ -62,55 +69,71 @@ document.addEventListener('DOMContentLoaded', () => {
   });
  
   nextBtn.addEventListener('click', () => {
-    if (position < getMaxPosition()) {
+    const maxPos = getMaxPosition();
+    if (position < maxPos) {
       position = position + 1;
       updateCarouselPosition();
       updateCarouselVisibility();
     }
   });
  
+  // TOUCH EVENTS MIGLIORATI
   carousel.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
     isSwiping = true;
+    isHorizontalSwipe = false;
   }, { passive: true });
  
   carousel.addEventListener('touchmove', (e) => {
     if (isSwiping) {
-      e.preventDefault(); // Previeni lo scroll della pagina
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const diffX = Math.abs(currentX - startX);
+      const diffY = Math.abs(currentY - startY);
+      
+      // Determina se è uno swipe orizzontale
+      if (diffX > diffY && diffX > 10) {
+        isHorizontalSwipe = true;
+        e.preventDefault(); // Previeni lo scroll solo se è swipe orizzontale
+      }
     }
   }, { passive: false });
  
   carousel.addEventListener('touchend', (e) => {
-    if (isSwiping) {
+    if (isSwiping && isHorizontalSwipe) {
       endX = e.changedTouches[0].clientX;
+      endY = e.changedTouches[0].clientY;
       handleSwipe();
-      isSwiping = false;
     }
+    isSwiping = false;
+    isHorizontalSwipe = false;
   }, { passive: true });
  
   function handleSwipe() {
-    const diff = startX - endX;
+    const diffX = startX - endX;
+    const diffY = Math.abs(startY - endY);
     const maxPos = getMaxPosition();
-     
-    console.log(`Swipe diff: ${diff}, threshold: ${swipeThreshold}`);
     
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0 && position < maxPos) {
+    // Assicurati che sia uno swipe orizzontale
+    if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > diffY) {
+      if (diffX > 0 && position < maxPos) {
         // Swipe verso sinistra (prossima carta)
         position = position + 1;
-        console.log(`Swiped left, new position: ${position}`);
-      } else if (diff < 0 && position > 0) {
+        console.log(`Swiped left, new position: ${position}/${maxPos}`);
+      } else if (diffX < 0 && position > 0) {
         // Swipe verso destra (carta precedente)
         position = position - 1;
-        console.log(`Swiped right, new position: ${position}`);
+        console.log(`Swiped right, new position: ${position}/${maxPos}`);
       }
+      
+      updateCarouselPosition();
+      updateCarouselVisibility();
     }
-     
-    updateCarouselPosition();
-    updateCarouselVisibility();
   }
  
   window.addEventListener('resize', () => {
+    // Ricalcola la posizione massima dopo il resize
     const maxPos = getMaxPosition();
     if (position > maxPos) {
       position = Math.max(0, maxPos);
@@ -157,10 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function debugCarousel() {
     const scrollWidth = getScrollWidth();
     const maxPos = getMaxPosition();
+    const containerWidth = carousel.parentElement.offsetWidth;
+    const itemsVisible = Math.floor(containerWidth / scrollWidth);
     
     console.log('=== CAROUSEL DEBUG ===');
     console.log('Screen Width:', window.innerWidth);
+    console.log('Container Width:', containerWidth);
     console.log('Total Items:', totalItems);
+    console.log('Items Visible:', itemsVisible);
     console.log('Current Position:', position);
     console.log('Max Position:', maxPos);
     console.log('Scroll Width:', scrollWidth);
