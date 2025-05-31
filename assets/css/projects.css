@@ -227,13 +227,6 @@
     }
 }
 
-  
-@media (max-width: 316px) {
-  .primary-btn {
-     height: 70px;
-  }
-}
-
 
 .carousel-indicators button {
   background-color: #D20A2E !important;
@@ -281,7 +274,7 @@
     }
   }
 
-  @media (max-width: 356px) {
+  @media (max-width: 341px) {
     .primary-btn {
      height: 70px;
     }
