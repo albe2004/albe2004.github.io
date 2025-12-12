@@ -6,9 +6,6 @@
 
 .container {
     padding-bottom: 0px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
 }
 
 .card {
@@ -22,8 +19,10 @@
     background-color: rgba(0, 0, 0, 0.0);
 }
 
-.col-12 {
-    margin-bottom: 20px !important;
+.row .col-12,
+.row .col-md-6 {
+    display: flex;
+    min-width: 0;
 }
 
 .card:hover {
@@ -49,17 +48,8 @@
 
 .row {
     margin-bottom: 2rem;
-    display: flex;
-    flex-wrap: wrap;
 }
 
-.row .col-md-6 {
-    display: flex;
-}
-
-.row .col-12 {
-    display: flex;
-}
 
 .card-body img, .singular-card-body img {
     width: 100%;
@@ -260,10 +250,9 @@
       font-size: 30px;
       line-height: 1.2;
     }
+  }
 
   
-
-
   @media (max-width: 768px) {
     .h2-carousel {
       font-size: 30px !important;
