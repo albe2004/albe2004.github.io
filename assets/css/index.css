@@ -67,7 +67,7 @@ main {
 
 .carousel-item .text-container {
   display: flex;
-  justify-content: center;  
+  flex-direction: column;  
   align-items: center; 
   background-color: #D20A2E;
   border-radius: 20px 0 0 20px;
@@ -77,8 +77,6 @@ main {
   padding: 10px;
   display: flex;
   text-align: left !important;
-  align-items: center;
-  flex-direction: column;
 }
 
 /* Indicatori di scroll per mobile */
