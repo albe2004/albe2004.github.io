@@ -68,9 +68,10 @@ main {
 .carousel-item .text-container {
   display: flex;
   flex-direction: column;  
-  align-items: center; 
+  align-items: flex-start;
   background-color: #D20A2E;
   border-radius: 20px 0 0 20px;
+  justify-content: center;
 }
 
 .h4 {
