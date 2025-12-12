@@ -78,9 +78,7 @@ main {
   padding: 10px;
   display: flex;
   text-align: left !important;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: flex-start;
+  place-content: center;
 }
 
 /* Indicatori di scroll per mobile */
