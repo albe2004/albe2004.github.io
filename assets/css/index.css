@@ -76,7 +76,7 @@ main {
 .h4 {
   padding: 10px;
   display: flex;
-  text-align: left;
+  text-align: left !important;
 }
 
 /* Indicatori di scroll per mobile */
