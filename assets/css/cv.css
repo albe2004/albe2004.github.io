@@ -155,8 +155,8 @@ p {
     align-items: center;
 }
 
-.certificate-master img {
-    width: 100px;
+.certificato-master img {
+    width: 300px;
     height: auto;
     object-fit: contain;
 }
