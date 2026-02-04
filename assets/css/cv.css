@@ -155,17 +155,12 @@ p {
     align-items: center;
 }
 
-.certificato-master {
-    flex-shrink: 0;
-    margin-right: 1.5rem;
-    display: flex;
-    align-items: center;
-}
 
 .certificato-master {
     width: 300px;
     height: auto;
     object-fit: contain;
+    margin-right: 1.5rem;
 }
 
 .education-logo img {
