@@ -155,6 +155,12 @@ p {
     align-items: center;
 }
 
+.certificate-master img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+}
+
 .education-logo img {
     width: 100px;
     height: auto;
