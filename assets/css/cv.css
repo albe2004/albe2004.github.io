@@ -265,8 +265,8 @@ p {
     } 
     
     .certificato-master img {
-        margin-right: 0;
-        margin-bottom: 1rem;
+        margin-right: 0 !important;
+        margin-bottom: 1rem !important;
 }
 
     p {
