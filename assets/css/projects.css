@@ -1,4 +1,3 @@
-
 .animated-highlight {
     text-align: center !important;
     margin-bottom: 0;
@@ -8,11 +7,23 @@
     padding-bottom: 0px;
 }
 
+/* =========================
+   CARDS - tutte a larghezza piena della colonna
+========================== */
+
+/* Le colonne sono flex: le card devono riempire la colonna */
+.row .col-12,
+.row .col-md-6 {
+    display: flex;
+    min-width: 0;
+}
 
 .card {
+    /* FIX: niente margin auto (in un contenitore flex farebbe restringere la card) */
+    width: 100%;
+    margin: 0;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
-    margin: 0 auto 20px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -20,22 +31,18 @@
     background-color: rgba(0, 0, 0, 0.0);
 }
 
-.row .col-12,
-.row .col-md-6 {
-    display: flex;
-    min-width: 0;
-}
-
 .card:hover {
     transform: translateY(-10px);
 }
 
 .full-width-card {
-    margin-bottom: 20px;
+    width: 100%;
+    margin: 0;
     border-radius: 20px !important;
 }
 
 .card-body, .singular-card-body {
+    width: 100%;
     padding: 20px !important;
     display: flex;
     flex-direction: column;
@@ -51,7 +58,6 @@
     margin-bottom: 2rem;
 }
 
-
 .card-body img, .singular-card-body img {
     width: 100%;
     max-height: 350px;
@@ -61,7 +67,6 @@
     display: block;
     height: auto;
 }
-
 
 .h3 {
     color: #D20A2E !important;
@@ -107,7 +112,7 @@
     .container {
         padding: 0 15px;
     }
-    
+
     .h1 {
         font-size: 58px !important;
     }
@@ -125,51 +130,51 @@
         margin-top: 180px !important;
         font-size: 50px !important;
     }
-    
+
     .row {
         margin-bottom: 1.5rem;
     }
-    
+
     .h3 {
         font-size: 22px;
     }
-    
+
     .card-text, p {
         font-size: 16px;
     }
 }
 
 @media (max-width: 768px) {
-.animated-highlight {
+    .animated-highlight {
         margin-top: 160px !important;
         font-size: 44px !important;
     }
+
     a {
         font-family: "Space Grotesk", sans-serif !important;
-      }
-    
+    }
+
     .col-md-6 {
         margin-bottom: 20px;
     }
-    
+
     .h3 {
         font-size: 20px !important;
     }
-    
+
     .card-text, p {
         font-size: 14px !important;
         margin-left: 0;
     }
-    
+
     .row {
         display: flex;
         flex-wrap: wrap;
     }
-    
+
     .row .col-md-6 {
         display: flex;
     }
-    
 }
 
 @media (max-width: 576px) {
@@ -178,21 +183,20 @@
         font-size: 40px;
         margin-bottom: 16px;
     }
-    
+
     .card-body, .singular-card-body {
-        padding: 15px;
+        padding: 15px !important;
     }
-    
 
     .full-width-card {
         margin-bottom: 20px;
     }
-    
+
     .h3 {
         padding: 15px 0;
         font-size: 18px;
     }
-    
+
     .card-text, p {
         font-size: 14px;
     }
@@ -203,39 +207,43 @@
         margin-top: 180px;
         font-size: 36px;
     }
-    
+
     .container.py-5 {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
+
     .row {
         width: 100%;
         margin: 0 auto !important;
-        
     }
+
     .p-sub-title {
         width: 90% !important;
     }
 }
 
+/* =========================
+   CAROUSEL
+========================== */
 
 .carousel-indicators button {
-  background-color: #D20A2E !important;
-}
-
-.h2-carousel {
-  text-align: center !important;
-  text-transform: lowercase !important;
-  margin-top: 80px !important;
-  margin-bottom: 30px !important;
-  font-size: 52px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
+    background-color: #D20A2E !important;
 }
 
 .carousel-indicators button:hover {
-  background-color: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+.h2-carousel {
+    text-align: center !important;
+    text-transform: lowercase !important;
+    margin-top: 80px !important;
+    margin-bottom: 30px !important;
+    font-size: 52px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .carousel-inner .carousel-item img {
@@ -245,34 +253,32 @@
     object-fit: contain;
 }
 
-  
-  @media (max-width: 480px) {
-    .h2 {
-      font-size: 30px;
-      line-height: 1.2;
-    }
-  }
-
-  
-  @media (max-width: 768px) {
-    .h2-carousel {
-      font-size: 30px !important;
-      margin-bottom: 20px !important;
-    }
-    #myCarousel {
-      padding: 40px 0 !important;
-    }
-  }
-
-  @media (max-width: 341px) {
-    .primary-btn {
-     height: 70px;
-    }
-  }
-}
-
 @media (max-width: 1200px) {
     .carousel-inner .carousel-item img {
-      width: 80% !important;
+        width: 80% !important;
     }
-  }
+}
+
+@media (max-width: 768px) {
+    .h2-carousel {
+        font-size: 30px !important;
+        margin-bottom: 20px !important;
+    }
+
+    #myCarousel {
+        padding: 40px 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .h2 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+}
+
+@media (max-width: 341px) {
+    .primary-btn {
+        height: 70px;
+    }
+}
