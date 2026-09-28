@@ -67,64 +67,88 @@
 
     <style>
       /* =========================
-         EXPERIENCE – fix spazio a destra
+         EXPERIENCE
+         Classi nuove (exp-*) e tag neutri, cosi non ereditano
+         nessuna regola di cv.css / main.css su ul, li, p o .experience-*
       ========================== */
 
-      .experience-section {
-        width: 100%;
-        overflow: hidden;
+      .exp-block {
+        display: block !important;
+        position: static !important;
+        float: none !important;
+        flex: 0 0 100% !important;
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        text-indent: 0 !important;
+        overflow: visible;
       }
 
-      .experience-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        width: 100%;
+      .exp-items {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
 
-      .experience-list li {
-        margin-bottom: 2.5rem;
-        width: 100%;
+      .exp-item {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 0 2.5rem 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        text-indent: 0 !important;
       }
 
-      .experience-list li:last-child {
-        margin-bottom: 0;
+      .exp-item:last-child {
+        margin-bottom: 0 !important;
       }
 
-      .education-details p,
-      .experience-header,
-      .experience-description {
+      .exp-item::before,
+      .exp-item::after {
+        content: none !important;
+        display: none !important;
+      }
+
+      .exp-header,
+      .exp-description {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        text-align: left !important;
+        text-indent: 0 !important;
         font-size: 1rem;
         line-height: 1.6;
-      }
-
-      .experience-header {
-        margin: 0 0 0.5rem 0;
-        white-space: normal;
-        word-break: normal;
         overflow-wrap: anywhere;
       }
 
-      .experience-description {
-        margin: 0;
-        max-width: 100%;
-        overflow-wrap: anywhere;
+      .exp-header {
+        margin-bottom: 0.5rem !important;
       }
 
-      .experience-header strong {
+      .exp-header strong {
         font-size: inherit;
         font-weight: 600;
       }
 
-      .experience-header a {
+      .exp-header a {
         font-size: inherit;
         color: inherit;
         text-decoration: underline;
         text-underline-offset: 3px;
       }
 
+      .education-details p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
       /* =========================
-         FOOTER – testo centrato, social a destra
+         FOOTER - testo centrato, social a destra
       ========================== */
 
       .site-footer {
@@ -231,80 +255,44 @@
 
           <div class="interest-item">
             <span class="interest-icon">
-              <img
-                src="../assets/img/cv/icon/shoes.png"
-                alt="Running"
-              />
+              <img src="../assets/img/cv/icon/shoes.png" alt="Running" />
             </span>
-
-            <span class="interest-text">
-              Running
-            </span>
+            <span class="interest-text">Running</span>
           </div>
 
           <div class="interest-item">
             <span class="interest-icon">
-              <img
-                src="../assets/img/cv/icon/art.png"
-                alt="Art"
-              />
+              <img src="../assets/img/cv/icon/art.png" alt="Art" />
             </span>
-
-            <span class="interest-text">
-              Art
-            </span>
+            <span class="interest-text">Art</span>
           </div>
 
           <div class="interest-item">
             <span class="interest-icon">
-              <img
-                src="../assets/img/cv/icon/book.png"
-                alt="Reading"
-              />
+              <img src="../assets/img/cv/icon/book.png" alt="Reading" />
             </span>
-
-            <span class="interest-text">
-              Reading
-            </span>
+            <span class="interest-text">Reading</span>
           </div>
 
           <div class="interest-item">
             <span class="interest-icon">
-              <img
-                src="../assets/img/cv/icon/movie.png"
-                alt="Movies"
-              />
+              <img src="../assets/img/cv/icon/movie.png" alt="Movies" />
             </span>
-
-            <span class="interest-text">
-              Movies
-            </span>
+            <span class="interest-text">Movies</span>
           </div>
 
           <div class="interest-item">
             <span class="interest-icon">
-              <img
-                src="../assets/img/cv/icon/design.png"
-                alt="Design"
-              />
+              <img src="../assets/img/cv/icon/design.png" alt="Design" />
             </span>
-
-            <span class="interest-text">
-              Design
-            </span>
+            <span class="interest-text">Design</span>
           </div>
 
           <div class="interest-item">
             <span class="interest-icon">
-              <img
-                src="../assets/img/cv/icon/ball.png"
-                alt="Football"
-              />
+              <img src="../assets/img/cv/icon/ball.png" alt="Football" />
             </span>
-
-            <span class="interest-text">
-              Football
-            </span>
+            <span class="interest-text">Football</span>
           </div>
 
         </div>
@@ -321,91 +309,47 @@
         <div class="skills-container">
 
           <!-- DESIGN TOOLS -->
-
           <div class="skill-category">
-
             <h3 class="h3">design tools</h3>
-
             <div class="skill-icons">
-
               <span class="skill-icon" title="Figma">
-                <img
-                  src="../assets/img/cv/icon/figma.png"
-                  alt="Figma"
-                />
+                <img src="../assets/img/cv/icon/figma.png" alt="Figma" />
               </span>
-
               <span class="skill-icon" title="Photoshop">
-                <img
-                  src="../assets/img/cv/icon/photoshop.png"
-                  alt="Photoshop"
-                />
+                <img src="../assets/img/cv/icon/photoshop.png" alt="Photoshop" />
               </span>
-
               <span class="skill-icon" title="Illustrator">
-                <img
-                  src="../assets/img/cv/icon/illustrator.png"
-                  alt="Illustrator"
-                />
+                <img src="../assets/img/cv/icon/illustrator.png" alt="Illustrator" />
               </span>
-
               <span class="skill-icon" title="Canva">
-                <img
-                  src="../assets/img/cv/icon/canva.png"
-                  alt="Canva"
-                />
+                <img src="../assets/img/cv/icon/canva.png" alt="Canva" />
               </span>
-
             </div>
           </div>
 
           <!-- LANGUAGES -->
-
           <div class="skill-category">
-
             <h3 class="h3">languages</h3>
-
             <div class="skill-icons">
-
               <span class="skill-icon" title="Italian">
-                <img
-                  src="../assets/img/cv/icon/italy-flag.png"
-                  alt="Italian"
-                />
+                <img src="../assets/img/cv/icon/italy-flag.png" alt="Italian" />
               </span>
-
               <span class="skill-icon" title="English">
-                <img
-                  src="../assets/img/cv/icon/us-flag.png"
-                  alt="English"
-                />
+                <img src="../assets/img/cv/icon/us-flag.png" alt="English" />
               </span>
-
             </div>
           </div>
 
           <!-- EDITING -->
-
           <div class="skill-category">
-
             <h3 class="h3">editing</h3>
-
             <div class="skill-icons">
-
               <span class="skill-icon" title="CapCut">
-                <img
-                  src="../assets/img/cv/icon/capcut.png"
-                  alt="CapCut"
-                />
+                <img src="../assets/img/cv/icon/capcut.png" alt="CapCut" />
               </span>
-
               <span class="skill-icon" title="DaVinci Resolve">
-                <img
-                  src="../assets/img/cv/icon/da-vinci-resolve.png"
-                  alt="DaVinci Resolve"
-                />
+                <img src="../assets/img/cv/icon/da-vinci-resolve.png" alt="DaVinci Resolve" />
               </span>
-
             </div>
           </div>
 
@@ -421,7 +365,6 @@
         <h2 class="h2">education</h2>
 
         <!-- START2IMPACT -->
-
         <div class="education-item">
 
           <div class="certificato-master">
@@ -432,7 +375,6 @@
           </div>
 
           <div class="education-details">
-
             <p>
               I've completed a Master in UX/UI Design and AI at
               start2impact University. The program focused on building
@@ -442,18 +384,14 @@
 
               I developed practical skills by working on
 
-              <a
-                href="https://albe2004.github.io/andrea-alberici-projects/"
-              >
+              <a href="https://albe2004.github.io/andrea-alberici-projects/">
                 10 individual portfolio projects
               </a>.
             </p>
-
           </div>
         </div>
 
         <!-- HIGH SCHOOL -->
-
         <div class="education-item">
 
           <div class="education-logo">
@@ -464,13 +402,11 @@
           </div>
 
           <div class="education-details">
-
             <p>
               Graduated from Stendhal High School in Rome with a
               specialization in Graphic Design, achieving a final
               score of 80/100 upon completion of the national exam.
             </p>
-
           </div>
         </div>
 
@@ -480,197 +416,120 @@
            EXPERIENCE
       ========================== -->
 
-      <section class="experience-section">
+      <section class="exp-block" aria-labelledby="exp-title">
 
-        <h2 class="h2">experience</h2>
+        <h2 class="h2" id="exp-title">experience</h2>
 
-        <ul class="experience-list">
+        <div class="exp-items" role="list">
 
           <!-- LOSTFRAME -->
-
-          <li>
-
-            <p class="experience-header">
-
-              <strong>
-                Brand &amp; Visual Designer
-              </strong>
-
+          <article class="exp-item" role="listitem">
+            <div class="exp-header">
+              <strong>Brand &amp; Visual Designer</strong>
               |
-
               <a
                 href="https://www.instagram.com/lostframe.cine/"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                @lostframe.cine
-              </a>
-
+              >@lostframe.cine</a>
               | 2026 – Present
-
-            </p>
-
-            <p class="experience-description">
+            </div>
+            <div class="exp-description">
               Built brand identity + design system
               (color, type, components) and applied it to reusable
               social templates across formats.
-            </p>
-
-          </li>
+            </div>
+          </article>
 
           <!-- LIFESTYLE ARCHIVE -->
-
-          <li>
-
-            <p class="experience-header">
-
-              <strong>
-                Brand &amp; Visual Designer
-              </strong>
-
+          <article class="exp-item" role="listitem">
+            <div class="exp-header">
+              <strong>Brand &amp; Visual Designer</strong>
               |
-
               <a
                 href="https://www.instagram.com/lifestyle_archive_/"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                @lifestyle_archive_
-              </a>
-
+              >@lifestyle_archive_</a>
               | 2026 – Present (on hold)
-
-            </p>
-
-            <p class="experience-description">
+            </div>
+            <div class="exp-description">
               Art direction and editorial content design
               (carousels/reels), plus video editing and visual system
               for a digital lifestyle archive.
-            </p>
-
-          </li>
+            </div>
+          </article>
 
           <!-- GROWTIZE -->
-
-          <li>
-
-            <p class="experience-header">
-
-              <strong>
-                Junior Web &amp; UX Designer
-              </strong>
-
+          <article class="exp-item" role="listitem">
+            <div class="exp-header">
+              <strong>Junior Web &amp; UX Designer</strong>
               | Growtize Holding |
-
               Nov 2025 – Jun 2026
-
-            </p>
-
-            <p class="experience-description">
+            </div>
+            <div class="exp-description">
               Designed and built landing pages and funnels
               (Figma → ClickFunnels/WordPress), plus supporting visual
               assets for social and YouTube.
-            </p>
-
-          </li>
+            </div>
+          </article>
 
           <!-- GROWTIZE TRAINING -->
-
-          <li>
-
-            <p class="experience-header">
-
-              <strong>
-                Funnels &amp; Conversion Designer
-              </strong>
-
+          <article class="exp-item" role="listitem">
+            <div class="exp-header">
+              <strong>Funnels &amp; Conversion Designer</strong>
               | Growtize Training Program |
-
               Jul 2025 – Sep 2025
-
-            </p>
-
-            <p class="experience-description">
+            </div>
+            <div class="exp-description">
               Created sales/opt-in pages and complete funnel
               structures, applying CRO principles; delivered a full
               website redesign for a group company.
-            </p>
-
-          </li>
+            </div>
+          </article>
 
           <!-- SATIRAE -->
-
-          <li>
-
-            <p class="experience-header">
-
-              <strong>
-                Visual &amp; Editorial Designer
-              </strong>
-
+          <article class="exp-item" role="listitem">
+            <div class="exp-header">
+              <strong>Visual &amp; Editorial Designer</strong>
               |
-
               <a
                 href="https://www.instagram.com/s.satirae/"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                @s.satirae
-              </a>
-
+              >@s.satirae</a>
               | 2025
-
-            </p>
-
-            <p class="experience-description">
+            </div>
+            <div class="exp-description">
               Editorial layout and visual post design for the magazine,
               collaborating with the team using Figma and Canva.
-            </p>
-
-          </li>
+            </div>
+          </article>
 
           <!-- OGNIDOVEVIAGGI -->
-
-          <li>
-
-            <p class="experience-header">
-
-              <strong>
-                Social Media Visual Design
-              </strong>
-
+          <article class="exp-item" role="listitem">
+            <div class="exp-header">
+              <strong>Social Media Visual Design</strong>
               | Ognidoveviaggi
-
-            </p>
-
-            <p class="experience-description">
+            </div>
+            <div class="exp-description">
               Created social posts and graphic assets aligned with
               brand style.
-            </p>
-
-          </li>
+            </div>
+          </article>
 
           <!-- OROINCENSOEMIRRA -->
-
-          <li>
-
-            <p class="experience-header">
-
-              <strong>
-                Graphic Design
-              </strong>
-
+          <article class="exp-item" role="listitem">
+            <div class="exp-header">
+              <strong>Graphic Design</strong>
               | Oroincensoemirra
-
-            </p>
-
-            <p class="experience-description">
+            </div>
+            <div class="exp-description">
               Designed promotional graphics and social content.
-            </p>
+            </div>
+          </article>
 
-          </li>
-
-        </ul>
+        </div>
 
       </section>
 
