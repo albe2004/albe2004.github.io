@@ -67,29 +67,30 @@
 
     <style>
       /* =========================
-         EXPERIENCE
+         EXPERIENCE – fix spazio a destra
       ========================== */
 
       .experience-section {
         width: 100%;
+        overflow: hidden;
       }
 
       .experience-list {
         list-style: none;
         margin: 0;
         padding: 0;
+        width: 100%;
       }
 
-      /* Spazio tra ogni esperienza */
       .experience-list li {
         margin-bottom: 2.5rem;
+        width: 100%;
       }
 
       .experience-list li:last-child {
         margin-bottom: 0;
       }
 
-      /* Stessa dimensione dei paragrafi */
       .education-details p,
       .experience-header,
       .experience-description {
@@ -99,10 +100,15 @@
 
       .experience-header {
         margin: 0 0 0.5rem 0;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;
       }
 
       .experience-description {
         margin: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
       }
 
       .experience-header strong {
@@ -118,7 +124,7 @@
       }
 
       /* =========================
-         FOOTER
+         FOOTER – testo centrato, social a destra
       ========================== */
 
       .site-footer {
@@ -129,13 +135,19 @@
       }
 
       .site-footer .container {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr auto;
         align-items: center;
-        justify-content: space-between;
         gap: 16px;
       }
 
+      .site-footer .footer-copyright {
+        justify-self: center;
+        text-align: center;
+      }
+
       .site-footer .social-icons {
+        justify-self: end;
         position: static;
         display: flex;
         align-items: center;
@@ -152,8 +164,13 @@
 
       @media (max-width: 576px) {
         .site-footer .container {
-          flex-direction: column;
+          grid-template-columns: 1fr;
           text-align: center;
+        }
+
+        .site-footer .footer-copyright,
+        .site-footer .social-icons {
+          justify-self: center;
         }
       }
     </style>
@@ -417,7 +434,7 @@
           <div class="education-details">
 
             <p>
-              I’ve completed a Master in UX/UI Design and AI at
+              I've completed a Master in UX/UI Design and AI at
               start2impact University. The program focused on building
               a strong design mindset through hands-on projects,
               covering the full UX/UI process from research to
