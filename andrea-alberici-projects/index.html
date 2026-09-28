@@ -2,27 +2,53 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
-  <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../assets/css/scss/main.css">
   <link rel="stylesheet" href="../assets/css/projects.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <meta property="og:description" content="Welcome to the portfolio of Andrea Alberici, a UX/UI design student dedicated to crafting intuitive, user-centered digital experiences." />
   <meta property="og:image" content="../assets/img/tag-opengraph/anteprima-projects.png" />
   <meta property="og:url" content="https://albe2004.github.io/andrea-alberici-portfolio/my-projects/"/>
   <meta property="og:type" content="Projects" />
   <meta property="og:site_name" content="Andrea Alberici Portfolio" />
   <meta property="og:locale" content="it_IT" />
+
   <title>My-projects</title>
+
   <style>
-    .container .h2-carousel { text-align: left !important; }
+    /* FIX 1: h2 centrati su mobile, left da desktop */
+    .h2-carousel{
+      text-align: center;
+      margin: 3rem 0 1.5rem;
+    }
+    @media (min-width: 992px){
+      .h2-carousel{ text-align: left; }
+    }
+
+    /* FIX 2: spaziatura verticale consistente tra sezioni/righe */
+    .projects-row{
+      margin-bottom: 1.5rem;
+    }
+
+    /* Fix extra: le card in griglia riempiono altezza e non “collassano” */
+    .card.h-100{
+      height: 100%;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <nav class="nav">
@@ -33,7 +59,9 @@
       <a href="../andrea-alberici-contact/">CONTACT</a>
     </nav>
   </header>
+
   <h1 class="animated-highlight">MY PROJECTS</h1>
+
   <div class="p-sub-title">
     <p>Take a look at some of the projects I've worked on, each one a step forward in my creative and professional journey.</p>
   </div>
@@ -43,7 +71,7 @@
     <!-- ========== BRAND DESIGN ========== -->
     <h2 class="h2-carousel">brand design</h2>
 
-    <div class="row">
+    <div class="row g-4 projects-row">
       <div class="col-12">
         <div class="card full-width-card">
           <div class="singular-card-body">
@@ -51,14 +79,16 @@
               <img src="../assets/img/projects/branding.jpg" alt="Branding project">
             </a>
             <h3 class="h3">branding project</h3>
-            <p class="card-text">I developed the full visual identity for Sunnee, a sustainable beachwear brand. This included logo design inspired by the sun and sea, a complementary color palette evoking summer, typographic choices for contrast and clarity, and a custom icon set. I also designed social media assets and created brand guidelines to ensure consistent communication across platforms.</p>
+            <p class="card-text">
+              Developed Sunnee’s visual identity: logo, color palette, typography, icon set, social assets, and brand guidelines.
+            </p>
             <a href="../assets/downloads/Progetto-Graphic-Design-Andrea-Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row g-4 projects-row">
       <div class="col-12">
         <div class="card full-width-card">
           <div class="card-body">
@@ -66,36 +96,41 @@
               <img src="../assets/img/projects/thumbnail-progetto-finale.png" alt="Rebrand barilla, end project ux/ui master">
             </a>
             <h3 class="h3">barilla rebrand: visual identity & ux redesign</h3>
-            <p class="card-text">For this project, I worked on the rebrand of Barilla, redefining its visual identity to merge tradition with a contemporary, geometric language. The process began with a discovery phase focused on brand analysis, competitors, and user needs, setting the foundation for a renewed digital experience. I structured the website through clear wireframes, then translated them into an interactive prototype with dynamic components and animated states. The project was validated through an in-person usability test, ensuring the design was intuitive, effective, and aligned with user expectations.</p>
+            <p class="card-text">
+              Rebranded Barilla and redesigned the website experience: discovery, wireframes, interactive prototype, and usability testing to validate choices.
+            </p>
             <a href="../assets/downloads/progetto-finale.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- NUOVI PROGETTI: sostituisci immagini, PDF e testi con i tuoi -->
-    <div class="row">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="card">
+    <div class="row g-4 projects-row">
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/lifestyle_archive.pdf" download>
               <img src="../assets/img/projects/lifestyle-archive.png" alt="Lifestyle Archive brand project">
             </a>
             <h3 class="h3">lifestyle archive</h3>
-            <p class="card-text">For this project, I created Lifestyle Archive, an independent editorial brand focused on cinema, design, music, sport, and culture. I developed its visual identity and editorial system, while managing the creative direction and content production for social media.
-.</p>
+            <p class="card-text">
+              Built an editorial brand and a reusable social system for culture content, from art direction to layout templates and content design.
+            </p>
             <a href="../assets/downloads/lifestyle_archive.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card">
+
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/lost-frame.pdf" download>
               <img src="../assets/img/projects/lost-frame.png" alt="LOST FRAME brand project">
             </a>
             <h3 class="h3">lost frame</h3>
-            <p class="card-text">For Lost Frame, I created a cohesive visual language and interface for choosing what to watch with minimal friction. I defined the palette, typography, layout rules, and core components, then applied them to key screens and reusable social formats.  </p>
+            <p class="card-text">
+              Designed a cinematic visual system (palette, type, components) and applied it to key UI screens and reusable social templates.
+            </p>
             <a href="../assets/downloads/lost-frame.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
@@ -105,87 +140,96 @@
     <!-- ========== UX RESEARCH & ACCESSIBILITY ========== -->
     <h2 class="h2-carousel">ux research & accessibility</h2>
 
-    <div class="row">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="card">
+    <div class="row g-4 projects-row">
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto Accessibility parte 1 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/accessibility1.png" alt="Accessibility project part 1">
             </a>
             <h3 class="h3">accessibility pt 1</h3>
-            <p class="card-text">I analyzed accessibility issues in an e-commerce platform, identifying key pain points for users with disabilities. Through personas and user journey mapping, I proposed improvements like optimized layouts, enhanced navigation, and better content structuring to create a more inclusive shopping experience.</p>
+            <p class="card-text">
+              Accessibility audit on an e-commerce: identified key barriers and proposed layout, navigation, and content improvements.
+            </p>
             <a href="../assets/downloads/Progetto Accessibility parte 1 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card">
+
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto Accessibility parte 2 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/accessibility2.png" alt="Accessibility project part 2">
             </a>
             <h3 class="h3">accessibility pt 2</h3>
-            <p class="card-text">I analyzed accessibility challenges on Ecodream’s website, identifying pain points that affected users with disabilities. Using personas and user journey mapping, I proposed improvements like enhanced contrast, streamlined navigation, and optimized layout structure for a more inclusive experience.</p>
+            <p class="card-text">
+              Persona + journey-based analysis with actionable fixes for contrast, structure, and navigation to improve inclusivity.
+            </p>
             <a href="../assets/downloads/Progetto Accessibility parte 2 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="card">
+    <div class="row g-4 projects-row">
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto Discovery parte 1 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/discovery1.png" alt="Discovery project part 1">
             </a>
             <h3 class="h3">discovery pt 1</h3>
-            <p class="card-text">I conducted a comprehensive UX analysis of Ecodream’s website, thoroughly evaluating usability patterns, content structure, and overall navigation flow. Through heuristic evaluation and competitor benchmarking, I identified accessibility gaps and designed tailored solutions to improve clarity and user interaction.</p>
+            <p class="card-text">
+              Heuristic evaluation + competitor benchmarking to spot usability/accessibility gaps and translate insights into recommendations.
+            </p>
             <a href="../assets/downloads/Progetto Discovery parte 1 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card">
+
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto Discovery parte 2 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/discovery2.png" alt="Discovery project part 2">
             </a>
             <h3 class="h3">discovery pt 2</h3>
-            <p class="card-text">I refined the accessibility analysis of Ecodream’s website by identifying pain points through personas and customer journeys. I proposed solutions such as improved navigation, clearer calls to action, streamlined content, and the integration of wishlist and live chat features to enhance usability and user experience.</p>
+            <p class="card-text">
+              Deepened the analysis with personas/journeys and proposed clearer CTAs, simplified content, wishlist and live chat features.
+            </p>
             <a href="../assets/downloads/Progetto Discovery parte 2 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="card">
+    <div class="row g-4 projects-row">
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto User Test 1 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/user-test1.png" alt="User test project part 1">
             </a>
             <h3 class="h3">user test 1</h3>
-            <p class="card-text">This project focuses on the design and planning of a user testing process for Ecodream, a sustainability-focused e-commerce platform.
-
-I defined research objectives, identified the target users, and selected a remote moderated First Click Test to evaluate initial user interactions.
-The project includes an interactive Figma prototype and a structured test script, laying the groundwork for meaningful usability evaluation.</p>
+            <p class="card-text">
+              Planned a remote moderated First Click Test: goals, target users, prototype, and script to evaluate initial interactions.
+            </p>
             <a href="../assets/downloads/Progetto User Test 1 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card">
+
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto User Test 2 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/user-test2.png" alt="User test project part 2">
             </a>
             <h3 class="h3">user test pt 2</h3>
-            <p class="card-text">This project covers the analysis and validation phase of the user testing process.
-
-By observing real users during remote sessions, I analyzed first-click behavior, usability issues, and interaction patterns.
-The insights collected were translated into targeted design improvements, helping validate design decisions through evidence rather than assumptions.</p>
+            <p class="card-text">
+              Analyzed remote sessions, captured usability issues and first-click patterns, and turned insights into prioritized improvements.
+            </p>
             <a href="../assets/downloads/Progetto User Test 2 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
@@ -195,54 +239,64 @@ The insights collected were translated into targeted design improvements, helpin
     <!-- ========== UX/UI DESIGN ========== -->
     <h2 class="h2-carousel">ux/ui design</h2>
 
-    <div class="row">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="card">
+    <div class="row g-4 projects-row">
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto Wireframing 1 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/wireframing1.png" alt="Wireframing project part 1">
             </a>
             <h3 class="h3">wireframing pt 1</h3>
-            <p class="card-text">I developed high-fidelity wireframes and a detailed wireflow for Ecodream’s website, focusing on usability, accessibility, and intuitive navigation. By refining layouts and structuring key interactions, I optimized the shopping journey, improved product discoverability, and integrated essential features to create a seamless and engaging user experience across the site.</p>
+            <p class="card-text">
+              Created desktop wireframes and wireflow to improve information architecture, discoverability, and key shopping interactions.
+            </p>
             <a href="../assets/downloads/Progetto Wireframing 1 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card">
+
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto Wireframing 2 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/wireframing2.png" alt="Wireframing project part 2">
             </a>
             <h3 class="h3">wireframing pt 2</h3>
-            <p class="card-text">I adapted Ecodream’s desktop wireframes for mobile, focusing on responsiveness, clarity, and usability. Through a detailed wireflow and sitemap, I mapped interactions and navigation patterns, then refined grid layouts and typography. I also enhanced accessibility and optimized mobile touchpoints to deliver a cohesive and engaging cross-device experience.</p>
+            <p class="card-text">
+              Adapted the experience for mobile: responsive layouts, refined typography, better spacing, and optimized touch targets.
+            </p>
             <a href="../assets/downloads/Progetto Wireframing 2 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="card">
+    <div class="row g-4 projects-row">
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto User Interface 1 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/user-interface1.png" alt="User interface project part 1">
             </a>
             <h3 class="h3">user interface pt 1</h3>
-            <p class="card-text">I developed high-fidelity wireframes and a detailed wireflow for Ecodream’s website, focusing on usability, accessibility, and intuitive navigation. By refining layouts and structuring key interactions, I optimized the shopping journey, improved product discoverability, and integrated essential features to create a seamless and engaging user experience across the site.</p>
+            <p class="card-text">
+              Designed high-fidelity desktop UI, translating wireframes into accessible layouts and consistent UI components.
+            </p>
             <a href="../assets/downloads/Progetto User Interface 1 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card">
+
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
           <div class="card-body">
             <a href="../assets/downloads/Progetto User Interface 2 di Andrea Alberici.pdf" download>
               <img src="../assets/img/projects/user-interface2.png" alt="User interface project part 2">
             </a>
             <h3 class="h3">user interface pt 2</h3>
-            <p class="card-text">I adapted Ecodream’s desktop wireframes for mobile, focusing on responsiveness, clarity, and usability. Through a detailed wireflow and sitemap, I mapped interactions and navigation patterns, then refined grid layouts and typography. I also enhanced accessibility and optimized mobile touchpoints to deliver a cohesive and engaging cross-device experience.</p>
+            <p class="card-text">
+              Designed the mobile UI, ensuring cross-device consistency and improving readability, spacing, and interaction states.
+            </p>
             <a href="../assets/downloads/Progetto User Interface 2 di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
@@ -252,7 +306,7 @@ The insights collected were translated into targeted design improvements, helpin
     <!-- ========== WEB DEVELOPMENT ========== -->
     <h2 class="h2-carousel">web development</h2>
 
-    <div class="row">
+    <div class="row g-4 projects-row">
       <div class="col-12">
         <div class="card full-width-card">
           <div class="card-body">
@@ -260,7 +314,9 @@ The insights collected were translated into targeted design improvements, helpin
               <img src="../assets/img/projects/HTML-CSS-DI-ANDREA-ALBERICI.png" alt="HTML and CSS project">
             </a>
             <h3 class="h3">html and css project</h3>
-            <p class="card-text">I designed and developed my personal portfolio website to showcase my projects, highlight my graphic style, and express my personality. Starting from a Figma prototype, I built a fully responsive and accessible site using HTML, SCSS, Bootstrap, and JavaScript. The site includes animated carousels, interactive components, a custom contact form with EmailJS integration, and well-structured modular code for easy maintenance.</p>
+            <p class="card-text">
+              Designed and built my portfolio from a Figma layout using HTML, SCSS/Bootstrap, and JavaScript with a responsive, modular structure.
+            </p>
             <a href="../assets/downloads/Progetto HTML e CSS di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
@@ -270,7 +326,7 @@ The insights collected were translated into targeted design improvements, helpin
     <!-- ========== COPYWRITING ========== -->
     <h2 class="h2-carousel">copywriting</h2>
 
-    <div class="row">
+    <div class="row g-4 projects-row">
       <div class="col-12">
         <div class="card full-width-card">
           <div class="card-body">
@@ -278,7 +334,9 @@ The insights collected were translated into targeted design improvements, helpin
               <img src="../assets/img/projects/copywriting.png" alt="Copywriting project">
             </a>
             <h3 class="h3">copywriting project</h3>
-            <p class="card-text">I crafted a persuasive copywriting project for Il Vestito Verde, aligning the messaging with the brand’s sustainable fashion ethos. Through detailed audience analysis, I tailored the tone to engage young professionals and students passionate about secondhand clothing. I integrated storytelling techniques, applied Cialdini’s persuasion principles, and emphasized the platform’s environmental impact. The result is a compelling narrative that enhances brand authenticity while promoting conscious consumerism in the fashion industry.</p>
+            <p class="card-text">
+              Wrote conversion-focused copy for a sustainable fashion brand, combining audience analysis, storytelling, and persuasion principles.
+            </p>
             <a href="../assets/downloads/Progetto Copywriting per Il Vestito Verde di Andrea Alberici.pdf" class="primary-btn" download>download presentation</a>
           </div>
         </div>
@@ -307,6 +365,7 @@ The insights collected were translated into targeted design improvements, helpin
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="14" aria-label="Slide 15"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="15" aria-label="Slide 16"></button>
       </div>
+
       <div class="carousel-inner">
         <div class="carousel-item active"><img src="../assets/img/projects/other-projects/movie-poster.jpg" class="d-block w-100" style="cursor: pointer;" onclick="openFullscreen(this)" alt="Movie poster Beautiful Boy"></div>
         <div class="carousel-item"><img src="../assets/img/projects/other-projects/personal-logo.png" class="d-block w-100" style="cursor: pointer;" onclick="openFullscreen(this)" alt="Personal logo"></div>
@@ -325,6 +384,7 @@ The insights collected were translated into targeted design improvements, helpin
         <div class="carousel-item"><img src="../assets/img/projects/other-projects/poster fiat 509.png" class="d-block w-100" style="cursor: pointer;" onclick="openFullscreen(this)" alt="Poster Fiat 509"></div>
         <div class="carousel-item"><img src="../assets/img/projects/other-projects/poster 1984.png" class="d-block w-100" style="cursor: pointer;" onclick="openFullscreen(this)" alt="Poster 1984"></div>
       </div>
+
       <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Precedente</span>
