@@ -8,19 +8,6 @@
     padding-bottom: 0px;
 }
 
-.projects-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.project-card {
-  width: 100%;
-  margin: 0 0 32px 0;
-  box-sizing: border-box;
-}
 
 .card {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
